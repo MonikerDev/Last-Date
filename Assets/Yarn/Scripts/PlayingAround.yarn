@@ -2,11 +2,10 @@
 tags:
 ---
 
-<<declare $lie = false>>
+<<set $ifix = true>>
+<<set $fixnum = 012>>
+<<set $thisssss = "that">>
 
-<<set $HeeHoo to false>>
-
-<<set $name to "Alexander">>
-
+Noah: I FIXED ITTTTT
 
 ===

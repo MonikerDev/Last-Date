@@ -1,19 +1,25 @@
-﻿title: Start
+title: Start
 tags:
 ---
-Cynthia: uwu
-Jim: wowza!
-THIS IS NARRATION
+M: m
 
-Alan: I am here as well...
-
-Cynthia: uwu
-
-<<declare $wednesday = "Wednesday">>
-<<declare $bobo = true>>
-<<declare $jombo = 12>>
+<<set $bobo = true>>
 
 Markus: This is cool!
 
-<<set $bobo = false>>
+Jimothy: {$bobo}
+
+<<set $bobo to false>>
+
+Jimothy: {$bobo}
+
+<<jump PartTwo>>
+===
+
+
+
+title: PartTwo
+tags:
+---
+{$bobo}
 ===

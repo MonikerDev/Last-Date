@@ -8,23 +8,17 @@ using Yarn.Unity;
 
 public class SqliteVariableStorage : VariableStorageBehaviour
 {
-    IDbConnection conn;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        conn = CreateAndOpenDatabase();
-
-    }
+    IDbConnection conn = CreateAndOpenDatabase();
 
     private void OnDestroy()
     {
         this.conn.Close();
     }
 
-    private IDbConnection CreateAndOpenDatabase()
+    private static IDbConnection CreateAndOpenDatabase()
     {
         // Open a connection to the database.
+        Debug.Log("Connected");
         string dbUri = "Data Source=" + Application.dataPath + "/StreamingAssets/GlobalStorage.sqlite";
         IDbConnection dbConnection = new SqliteConnection(dbUri);
         dbConnection.Open();
@@ -88,6 +82,7 @@ public class SqliteVariableStorage : VariableStorageBehaviour
 
     public override void SetValue(string variableName, string stringValue)
     {
+        Debug.Log("Setting " + variableName + " to " + stringValue);
         SqliteParameter param1 = new SqliteParameter("$key", variableName);
         SqliteParameter param2 = new SqliteParameter("$value", stringValue);
         IDbCommand command = conn.CreateCommand();
@@ -99,6 +94,8 @@ public class SqliteVariableStorage : VariableStorageBehaviour
 
     public override void SetValue(string variableName, float floatValue)
     {
+        Debug.Log("Setting " + variableName + " to " + floatValue);
+
         SqliteParameter param1 = new SqliteParameter("$key", variableName);
         SqliteParameter param2 = new SqliteParameter("$value", floatValue);
         IDbCommand command = conn.CreateCommand();
@@ -110,6 +107,8 @@ public class SqliteVariableStorage : VariableStorageBehaviour
 
     public override void SetValue(string variableName, bool boolValue)
     {
+        Debug.Log("Setting " + variableName + " to " + boolValue);
+
         SqliteParameter param1 = new SqliteParameter("$key", variableName);
         SqliteParameter param2 = new SqliteParameter("$value", boolValue);
         IDbCommand command = conn.CreateCommand();
