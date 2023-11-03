@@ -1,0 +1,12 @@
+﻿title: Playingaround
+tags:
+---
+
+<<declare $lie = false>>
+
+<<set $HeeHoo to false>>
+
+<<set $name to "Alexander">>
+
+
+===

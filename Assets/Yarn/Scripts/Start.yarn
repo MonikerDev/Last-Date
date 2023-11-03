@@ -1,0 +1,19 @@
+﻿title: Start
+tags:
+---
+Cynthia: uwu
+Jim: wowza!
+THIS IS NARRATION
+
+Alan: I am here as well...
+
+Cynthia: uwu
+
+<<declare $wednesday = "Wednesday">>
+<<declare $bobo = true>>
+<<declare $jombo = 12>>
+
+Markus: This is cool!
+
+<<set $bobo = false>>
+===
