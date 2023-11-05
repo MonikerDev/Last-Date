@@ -18,7 +18,7 @@ public class BattleItem : Item
 
         if(this.Quantity == 0)
         {
-            GlobalVariableStorage.items.Remove(this);
+           // GlobalVariableStorage.items.Remove(this);
         }
     }
 }

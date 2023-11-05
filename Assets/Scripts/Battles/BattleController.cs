@@ -9,6 +9,7 @@ using UnityEngine.U2D;
 using static UnityEngine.GraphicsBuffer;
 using System.Runtime.CompilerServices;
 using static UnityEngine.UI.Button;
+using UnityEngine.SceneManagement;
 
 public class BattleController : MonoBehaviour
 {
@@ -107,18 +108,16 @@ public class BattleController : MonoBehaviour
 		PlayerPortraits[2] = portrait3;
 		PlayerPortraits[3] = portrait4;
 
-		characters.Add("Cynthia");
-		characters.Add("Asheton");
-		//characters.Add("Heather");
-		//characters.Add("Logan");
-		//characters.Add("Bea");
-		//characters.Add("Madison");
-		//characters.Add("Emilia");
-
-		characters.Add("Shambler");
+        //characters.Add("Cynthia");
+        //characters.Add("Asheton");
+        //characters.Add("Heather");
+        //characters.Add("Logan");
+        //characters.Add("Bea");
+        //characters.Add("Madison");
+        //characters.Add("Emilia");
 
 
-        //characters.AddRange(GlobalUtility.CreateEncounter());
+        this.characters.AddRange(GlobalVariableStorage.CurrentEncounter);
 
         foreach (string character in characters)
 		{
@@ -378,6 +377,8 @@ public class BattleController : MonoBehaviour
 		{
 			image.enabled = false;
 		}
+
+        EndBattle();
 	}
 
     public static Move SaveChosenMove(Unit caller)
@@ -503,7 +504,7 @@ public class BattleController : MonoBehaviour
                     playerSpot++;
                 }
 				break;
-            case "Asheton":
+            case "Ashe":
 				if (playerSpot < 4)
 				{
 					Asheton asheton = new Asheton(12, 12, 10, 120, 12, 12, 12, 10, 120, 12);
@@ -542,7 +543,7 @@ public class BattleController : MonoBehaviour
                     playerSpot++;
 				}
 				break;
-            case "Emilia":
+            case "Emi":
 
                 if (playerSpot < 4)
                 {
@@ -558,7 +559,7 @@ public class BattleController : MonoBehaviour
                     }
                 }
                 break;
-            case "Madison":
+            case "Madi":
 
                 if (playerSpot < 4)
                 {
@@ -670,6 +671,12 @@ public class BattleController : MonoBehaviour
             }
         }
     }
+
+    //For demo
+    public void EndBattle()
+	{
+        SceneManager.LoadScene("BattleTesterHome");
+	}
 }
 
 

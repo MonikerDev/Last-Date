@@ -1,195 +1,129 @@
+using Mono.Data.Sqlite;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Xml.XPath;
 using UnityEngine;
 
 public static class GlobalVariableStorage
 {
-    //Flags for Yarn
-    private static Dictionary<string, string> labels = new Dictionary<string, string>();
-    private static Dictionary<string, bool> flags = new Dictionary<string, bool>();
-    private static Dictionary<string, float> counters = new Dictionary<string, float>();
-    private static string stringPath = Application.dataPath + "/MyTest.txt";
+    //database
+    private static IDbConnection conn;
 
-    //Inventory
-    public static List<Item> items = new List<Item>();
+    //Battlers
+    public static List<string> Party = new List<string>();
+    public static List<string> CurrentEncounter = new List<string>();
 
-    public static void Clear()
-    {
-        labels.Clear();
-        flags.Clear();
-        counters.Clear();
-    }
+    //Key Elements
+    public static Cynthia cynthia;
+    public static Asheton asheton;
+    public static Bea bea;
+    public static Heather heather;
+    public static Madison madison;
+    public static Logan logan;
+    public static Emilia emilia;
 
-    public static bool Contains(string key)
-    {
-        bool contains = false;
-
-        if(labels.ContainsKey(key) || flags.ContainsKey(key) || counters.ContainsKey(key))
-        {
-            contains = true;
-        }
-
-        return contains;
-    }
-
-    public static (Dictionary<string, float>, Dictionary<string, string>, Dictionary<string, bool>) GetAll()
-    {
-        return (counters, labels, flags);
-    }
-
-    public static void Add<T>(string key, T value)
-    {
-		if (typeof(T) == typeof(string))
-		{
-            labels.Add(key, (string)(object)value);
-		}
-		else if (typeof(T) == typeof(bool))
-		{
-			flags.Add(key, (bool)(object)value);
-		}
-		else if (typeof(T) == typeof(float))
-		{
-			counters.Add(key, (float)(object)value);
-		}
-	}
-
-	public static void Change<T>(string key, T value)
+    public static void AddToParty(string unit)
 	{
-		if (typeof(T) == typeof(string))
-		{
-			labels[key] = (string)(object)value;
-		}
-		else if (typeof(T) == typeof(bool))
-		{
-			flags[key] = (bool)(object)value;
-		}
-		else if (typeof(T) == typeof(float))
-		{
-            counters[key] = (float)(object)value;
-		}
+        Party.Add(unit);
 	}
 
-	public static void Trigger(string key)
+    public static void RemoveFromParty(string unit)
+	{
+        Party.Remove(unit);
+	}
+
+    public static void CompileEncounter()
+	{
+        CurrentEncounter.AddRange(Party);
+
+        CurrentEncounter.AddRange(GlobalUtility.CreateEncounter());
+	}
+
+    public static IDbConnection CreateAndOpenDatabase()
     {
-        if (!flags[key])
-        {
-            flags[key] = true;
-        }
-        else
-        {
-            Debug.Log("Flag is already triggered");
-        }
+        // Open a connection to the database.
+        string dbUri = "Data Source=" + Application.dataPath + "/StreamingAssets/GlobalStorage.sqlite";
+        IDbConnection dbConnection = new SqliteConnection(dbUri);
+        dbConnection.Open();
+
+        return dbConnection;
     }
 
-    public static bool CheckIfExists<T>(string key, out T result)
-    {   
-        if(typeof(T) == typeof(string))
-        {
-            if (labels.ContainsKey(key))
-            {
-                result = (T)(object)labels[key];
-                return true;
-            }
-        }
-        else if(typeof(T) == typeof(bool))
-        {
-            if(flags.ContainsKey(key))
-            {
-                result = (T)(object)flags[key]; 
-                return true;
-            }
-        }
-        else if( typeof(T) == typeof(float))
-        {
-            if(counters.ContainsKey(key))
-            {
-                result = (T)(object)counters[key];
-                return true;
-            }
-        }
-
-        result = default(T);
-        return false;
-
-    }
-
-    public static void PopulateFlags()
+    private static void SaveUnitToDB(Unit unit)
     {
-        flags.Clear();
+        CreateAndOpenDatabase();
 
-        Debug.Log(stringPath);
+        SqliteParameter param1 = new SqliteParameter("$charName", unit.charName);
+        SqliteParameter param2 = new SqliteParameter("$bsAtk", unit.bsAtk);
+        SqliteParameter param3 = new SqliteParameter("$bsDef", unit.bsDef);
+        SqliteParameter param4 = new SqliteParameter("$bsSpd", unit.bsSpd);
+        SqliteParameter param5 = new SqliteParameter("$bsHp", unit.bsHp);
+        SqliteParameter param6 = new SqliteParameter("$bsStm", unit.bsStm);
+        SqliteParameter param7 = new SqliteParameter("$currAtk", unit.currAtk);
+        SqliteParameter param8 = new SqliteParameter("$currDef", unit.currDef);
+        SqliteParameter param9 = new SqliteParameter("$currSpd", unit.currSpd);
+        SqliteParameter param10 = new SqliteParameter("$currHp", unit.currHp);
+        SqliteParameter param11 = new SqliteParameter("$currStm", unit.currStm);
 
-        if (!File.Exists(stringPath))
-        {
-            File.Create(stringPath);
-        }
+        IDbCommand command = conn.CreateCommand();
+        command.CommandText = "INSERT OR REPLACE INTO Characters (charName, bsAtk, bsDef, bsSpd, bsHp, bsStm, currAtk, currDef, currSpd, currHp, currStm) VALUES ($charName, $bsAtk, $bsDef, $bsSpd, $bsHp, $bsStm, $currAtk, $currDef, $currSpd, $currhp, $currStm)";
+        command.Parameters.Add(param1);
+        command.Parameters.Add(param2);
+        command.Parameters.Add(param3);
+        command.Parameters.Add(param4);
+        command.Parameters.Add(param5);
+        command.Parameters.Add(param6);
+        command.Parameters.Add(param7);
+        command.Parameters.Add(param8);
+        command.Parameters.Add(param9);
+        command.Parameters.Add(param10);
+        command.Parameters.Add(param11);
+        command.ExecuteNonQuery();
 
-        using(StreamReader sr = new StreamReader(stringPath))
-        {
-            string line;
-
-            while ((line = sr.ReadLine()) != null)
-            {
-                try
-                {
-                    bool state;
-                    string[] pieces = line.Split(',');
-
-                    if (pieces[1] == "false")
-                    {
-                        state = false;
-                    }
-                    else if (pieces[1] == "true")
-                    {
-                        state = true;
-                    }
-                    else
-                    {
-                        throw new System.Exception();
-                    }
-
-                    flags.Add(pieces[0], state);
-                }
-                catch (System.Exception e)
-                {
-                    Debug.LogError(e);
-                }
-            }
-
-            sr.Close();
-        }
+        conn.Close();
     }
 
-    public static void WriteFlagsToFile()
+    private static Unit PullUnitFromDB(string unitName)
     {
-        Debug.Log(stringPath);
+        CreateAndOpenDatabase();
 
-        if (!File.Exists(stringPath))
-        {
-            File.Create(stringPath);
-        }
+        Unit result = null;
 
-        using (StreamWriter sw = new StreamWriter(stringPath))
+        SqliteParameter param = new SqliteParameter("$unitName", unitName);
+
+        IDbCommand command = conn.CreateCommand();
+        command.CommandText = "SELECT * FROM Characters WHERE charName = $unitName";
+        command.Parameters.Add(param);
+
+        IDataReader reader = command.ExecuteReader();
+
+        if (reader.Read())
         {
-            foreach(string flag in flags.Keys)
+            int bsAtk = reader.GetInt32(1);
+            int bsDef = reader.GetInt32(2);
+            int bsSpd = reader.GetInt32(3);
+            int bsHp = reader.GetInt32(4);
+            int bsStm = reader.GetInt32(5);
+            int currAtk = reader.GetInt32(6);
+            int currDef = reader.GetInt32(6);
+            int currSpd = reader.GetInt32(6);
+            int currHp = reader.GetInt32(6);
+            int currStm = reader.GetInt32(6);
+
+            switch (reader.GetString(0))
             {
-                string state;
+                case "Cynthia":
 
-                if (flags[flag])
-                {
-                    state = "true";
-                }
-                else
-                {
-                    state = "false";
-                }
-                sw.WriteLine(flag + "," +  state);
+                    result = new Cynthia(bsAtk, bsDef, bsSpd, bsHp, bsStm, currAtk, currDef, currSpd, currHp, currStm);
+                    break;
             }
-            sw.Close();
         }
 
+        conn.Close();
+        return result;
     }
+
 }
