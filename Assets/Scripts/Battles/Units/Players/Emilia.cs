@@ -117,6 +117,8 @@ public class Emilia : Unit
 	//Low cost
 	public void ReturnTheFavor(Unit target)
 	{
+		this.TakeStamina(10);
+
 		int power = Mathf.RoundToInt(this.bsHp - this.currHp) + 1;
 
 		target.TakeDamage(BattleController.CalculateDamage(power, this, target));
@@ -126,6 +128,8 @@ public class Emilia : Unit
 	//Med Cost
 	public void Deny()
 	{
+		this.TakeStamina(15);
+
 		if(!this.denied)
 		{
 			DialogLineMapper.QueueLine("Emi refuses to go down now!");
@@ -140,6 +144,8 @@ public class Emilia : Unit
 	//Low Cost or Med Cost?
 	public void CarefullyLaidPlans(Unit target)
 	{
+		this.TakeStamina(10);
+
 		if (!plansLaid)
 		{
 			DialogLineMapper.QueueLine("Emi is watching for weaknesses");

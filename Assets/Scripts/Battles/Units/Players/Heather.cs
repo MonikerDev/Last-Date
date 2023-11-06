@@ -90,6 +90,7 @@ public class Heather : Unit
 	//Low cost, spd up
 	public void RampUp()
 	{
+		this.TakeStamina(10);
 		DialogLineMapper.QueueLine("Heather hypes herself up");
 		this.ChangeStat(1, StatType.speed);
 	}
@@ -97,6 +98,7 @@ public class Heather : Unit
 	//Gives an ally spd up and restores stamina to them
 	public void HelpUp(Unit target)
 	{
+		this.TakeStamina(15);
 		DialogLineMapper.QueueLine("Heather offers " + target.charName + " a helping hand");
 		target.ChangeStat(1, StatType.speed);
 	}
@@ -104,6 +106,8 @@ public class Heather : Unit
 	//Deals damage++ has chance to damage self???
 	public void AxeKick(Unit target)
 	{
+		this.TakeStamina(25);
+
 		DialogLineMapper.QueueLine("Heather swings down her leg with absolute force");
 		target.TakeDamage(BattleController.CalculateDamage(150, this, target));
 

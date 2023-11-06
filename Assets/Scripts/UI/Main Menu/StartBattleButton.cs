@@ -8,7 +8,9 @@ public class StartBattleButton : MonoBehaviour
     public void StartBattle()
 	{
         GlobalVariableStorage.AddToParty("Cynthia");
-        GlobalVariableStorage.AddToParty("Asheton");
+        GlobalVariableStorage.AddToParty("Ashe");
+        GlobalVariableStorage.AddToParty("Heather");
+        GlobalVariableStorage.AddToParty("Madi");
         GlobalVariableStorage.CompileEncounter();
         SceneManager.LoadScene("TurnBasedBattleArena");
     }

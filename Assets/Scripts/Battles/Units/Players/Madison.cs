@@ -89,6 +89,7 @@ public class Madison : Unit
 	//Dmg def down, hit all, high cost
 	public void SuppressingFire()
 	{
+		this.TakeStamina(10);
 		DialogLineMapper.QueueLine(this.charName + " sprays a line of suppressing fire!");
 
 		foreach(Unit target in BattleController.enemies)
@@ -102,6 +103,7 @@ public class Madison : Unit
 	//Atk up, stamina up
 	public void Aim(Unit target)
 	{
+		this.TakeStamina(5);
 		this.ChangeStat(1, StatType.attack);
 		
 		if(this.currStm + 15 >= this.bsStm)
@@ -122,6 +124,8 @@ public class Madison : Unit
 	//Dmg+++ enemy spd and def down
 	public void Bullseye(Unit target)
 	{
+		this.TakeStamina(25);
+
 		if (isAiming)
 		{
 			aimedTarget.TakeDamage(2 * BattleController.CalculateDamage(100, this, aimedTarget));

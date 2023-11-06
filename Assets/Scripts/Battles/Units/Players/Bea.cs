@@ -14,9 +14,9 @@ public class Bea : Unit
         this.type = UnitType.player;
 
         this.moves.Add(new Move("Riff", 2, 0));
-        this.moves.Add(new Move("Let Loose", 0, 5));
+        this.moves.Add(new Move("Let Loose", 0, 10));
         this.moves.Add(new Move("Song of Ferocity", -2, 15));
-        this.moves.Add(new Move("Crank it to 11", 2, 20));
+        this.moves.Add(new Move("Crank it to 11", 2, 30));
 
     }
 
@@ -98,6 +98,8 @@ public class Bea : Unit
     //Increases atk, heals a small amount, reduces def
     public void LetLoose()
     {
+        this.TakeStamina(10);
+
         DialogLineMapper.QueueLine("Bea lets go of her restraints with a sigh");
         this.ChangeStat(1, StatType.attack);
         this.TakeDamage(-2);
@@ -107,6 +109,8 @@ public class Bea : Unit
     //Gives all allies atk and spd up
     public void SongOfFerocity()
     {
+        this.TakeStamina(15);
+
         DialogLineMapper.QueueLine("Bea inspires the party to give it their all...");
         foreach(Unit target in BattleController.players)
         {
@@ -121,6 +125,8 @@ public class Bea : Unit
     public void CrankItTo11()
     {
 		DialogLineMapper.QueueLine("Bea cranks it to 11!!!!");
+
+        this.TakeStamina(30);
 
 		foreach (Unit target in BattleController.enemies)
 		{

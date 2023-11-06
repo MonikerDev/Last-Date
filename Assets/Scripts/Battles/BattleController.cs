@@ -463,10 +463,35 @@ public class BattleController : MonoBehaviour
                     battlers.Add(heather);
                     players.Add(heather);
 
+                    //Hp Bar Code
+                    PlayerPortraits[playerSpot].tag = heather.charName;
+                    sliders = PlayerPortraits[playerSpot].GetComponentsInChildren<Slider>();
+
+                    for (int i = 0; i < sliders.Length; i++)
+                    {
+                        if (sliders[i].tag == "health")
+                        {
+                            Debug.Log("It work");
+                            sliders[i].maxValue = heather.bsHp;
+                            sliders[i].value = heather.currHp;
+                        }
+                        else if (sliders[i].tag == "stamina")
+                        {
+                            sliders[i].maxValue = heather.bsStm;
+                            sliders[i].value = heather.currStm;
+                        }
+                    }
+                    PlayerPortraits[playerSpot].GetComponentInChildren<TMP_Text>().text = heather.currHp + "\n" + heather.currStm;
+                    if (battlerManager.HeatherHead != null)
+                    {
+                        PlayerPortraits[playerSpot].GetComponentInChildren<Image>().sprite = battlerManager.HeatherHead;
+                    }
+                    PlayerPortraits[playerSpot].SetActive(true);
+
                     if (battlerManager.Heather != null)
                     {
                         playerImages[playerSpot].sprite = battlerManager.Heather;
-						playerImages[playerSpot].enabled = true;
+                        playerImages[playerSpot].enabled = true;
                         imgMap.Add(character, playerImages[playerSpot]);
                     }
                     playerSpot++;
@@ -478,6 +503,31 @@ public class BattleController : MonoBehaviour
                     Bea bea = new Bea(10, 10, 10, 10, 10, 10, 10, 10, 10, 10);
                     battlers.Add(bea);
                     players.Add(bea);
+
+                    //Hp Bar Code
+                    PlayerPortraits[playerSpot].tag = bea.charName;
+                    sliders = PlayerPortraits[playerSpot].GetComponentsInChildren<Slider>();
+
+                    for (int i = 0; i < sliders.Length; i++)
+                    {
+                        if (sliders[i].tag == "health")
+                        {
+                            Debug.Log("It work");
+                            sliders[i].maxValue = bea.bsHp;
+                            sliders[i].value = bea.currHp;
+                        }
+                        else if (sliders[i].tag == "stamina")
+                        {
+                            sliders[i].maxValue = bea.bsStm;
+                            sliders[i].value = bea.currStm;
+                        }
+                    }
+                    PlayerPortraits[playerSpot].GetComponentInChildren<TMP_Text>().text = bea.currHp + "\n" + bea.currStm;
+                    if (battlerManager.BeaHead != null)
+                    {
+                        PlayerPortraits[playerSpot].GetComponentInChildren<Image>().sprite = battlerManager.BeaHead;
+                    }
+                    PlayerPortraits[playerSpot].SetActive(true);
 
                     if (battlerManager.Bea != null)
                     {
@@ -494,6 +544,31 @@ public class BattleController : MonoBehaviour
                     Logan logan = new Logan(10, 10, 10, 10, 10, 10, 10, 10, 10, 10);
                     battlers.Add(logan);
                     players.Add(logan);
+
+                    //Hp Bar Code
+                    PlayerPortraits[playerSpot].tag = logan.charName;
+                    sliders = PlayerPortraits[playerSpot].GetComponentsInChildren<Slider>();
+
+                    for (int i = 0; i < sliders.Length; i++)
+                    {
+                        if (sliders[i].tag == "health")
+                        {
+                            Debug.Log("It work");
+                            sliders[i].maxValue = logan.bsHp;
+                            sliders[i].value = logan.currHp;
+                        }
+                        else if (sliders[i].tag == "stamina")
+                        {
+                            sliders[i].maxValue = logan.bsStm;
+                            sliders[i].value = logan.currStm;
+                        }
+                    }
+                    PlayerPortraits[playerSpot].GetComponentInChildren<TMP_Text>().text = logan.currHp + "\n" + logan.currStm;
+                    if (battlerManager.LoganHead != null)
+                    {
+                        PlayerPortraits[playerSpot].GetComponentInChildren<Image>().sprite = battlerManager.LoganHead;
+                    }
+                    PlayerPortraits[playerSpot].SetActive(true);
 
                     if (battlerManager.Logan != null)
                     {
@@ -551,12 +626,38 @@ public class BattleController : MonoBehaviour
                     battlers.Add(emilia);
                     players.Add(emilia);
 
+                    //Hp Bar Code
+                    PlayerPortraits[playerSpot].tag = emilia.charName;
+                    sliders = PlayerPortraits[playerSpot].GetComponentsInChildren<Slider>();
+
+                    for (int i = 0; i < sliders.Length; i++)
+                    {
+                        if (sliders[i].tag == "health")
+                        {
+                            Debug.Log("It work");
+                            sliders[i].maxValue = emilia.bsHp;
+                            sliders[i].value = emilia.currHp;
+                        }
+                        else if (sliders[i].tag == "stamina")
+                        {
+                            sliders[i].maxValue = emilia.bsStm;
+                            sliders[i].value = emilia.currStm;
+                        }
+                    }
+                    PlayerPortraits[playerSpot].GetComponentInChildren<TMP_Text>().text = emilia.currHp + "\n" + emilia.currStm;
+                    if (battlerManager.EmiliaHead != null)
+                    {
+                        PlayerPortraits[playerSpot].GetComponentInChildren<Image>().sprite = battlerManager.EmiliaHead;
+                    }
+                    PlayerPortraits[playerSpot].SetActive(true);
+
                     if (battlerManager.Emilia != null)
                     {
                         playerImages[playerSpot].sprite = battlerManager.Emilia;
 						playerImages[playerSpot].enabled = true;
                         imgMap.Add(character, playerImages[playerSpot]);
                     }
+                    playerSpot++;
                 }
                 break;
             case "Madi":
@@ -566,6 +667,30 @@ public class BattleController : MonoBehaviour
                     Madison madison = new Madison(12, 12, 10, 12, 12, 12, 12, 10, 12, 12);
                     battlers.Add(madison);
                     players.Add(madison);
+
+                    PlayerPortraits[playerSpot].tag = madison.charName;
+                    sliders = PlayerPortraits[playerSpot].GetComponentsInChildren<Slider>();
+
+                    for (int i = 0; i < sliders.Length; i++)
+                    {
+                        if (sliders[i].tag == "health")
+                        {
+                            Debug.Log("It work");
+                            sliders[i].maxValue = madison.bsHp;
+                            sliders[i].value = madison.currHp;
+                        }
+                        else if (sliders[i].tag == "stamina")
+                        {
+                            sliders[i].maxValue = madison.bsStm;
+                            sliders[i].value = madison.currStm;
+                        }
+                    }
+                    PlayerPortraits[playerSpot].GetComponentInChildren<TMP_Text>().text = madison.currHp + "\n" + madison.currStm;
+                    if (battlerManager.MadisonHead != null)
+                    {
+                        PlayerPortraits[playerSpot].GetComponentInChildren<Image>().sprite = battlerManager.MadisonHead;
+                    }
+                    PlayerPortraits[playerSpot].SetActive(true);
 
                     if (battlerManager.Madison != null)
                     {
