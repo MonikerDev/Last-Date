@@ -19,6 +19,13 @@ MonoBehaviour:
   Logan: {fileID: 21300000, guid: 93961c980e1c77b4180a98275059768a, type: 3}
   Madison: {fileID: 21300000, guid: 54245f11c5206ff4b9cf725a79c3925a, type: 3}
   Asheton: {fileID: 21300000, guid: c343e3d9201e80849a212e5f52867ce6, type: 3}
+  BeaHead: {fileID: 0}
+  CynthiaHead: {fileID: 21300000, guid: dbec8b772d7338e4eaba6bef63fe9f32, type: 3}
+  EmiliaHead: {fileID: 0}
+  HeatherHead: {fileID: 0}
+  LoganHead: {fileID: 0}
+  MadisonHead: {fileID: 0}
+  AshetonHead: {fileID: 0}
   Shambler: {fileID: 21300000, guid: de8d57e38aaebcf48b63928d9137f7f3, type: 3}
   Shrieker: {fileID: 21300000, guid: ac583f2cf227b8145abc6c96f58086f5, type: 3}
   Strider: {fileID: 21300000, guid: 355d4b12a2c9e9244b0cbd3b0b999e11, type: 3}
