@@ -19,4 +19,14 @@ public class EncounterBuilder : MonoBehaviour
 
         characterList.text = text;
 	}
+
+    public void AddCharacter()
+	{
+        characters.Add(this.GetComponent<GameObject>().tag);
+	}
+
+    public void RemoveCharacter()
+    {
+        characters.Remove(this.GetComponent<GameObject>().tag);
+    }
 }
