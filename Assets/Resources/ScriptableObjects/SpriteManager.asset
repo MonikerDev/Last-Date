@@ -12,20 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc77d942322f9a54c88635294971179e, type: 3}
   m_Name: SpriteManager
   m_EditorClassIdentifier: 
-  Bea: {fileID: 21300000, guid: 93961c980e1c77b4180a98275059768a, type: 3}
-  Cynthia: {fileID: 21300000, guid: 7fd638d45138d17478091bb5b8fca920, type: 3}
-  Emilia: {fileID: 21300000, guid: 66d7ab4f2100f2447adcf2d3ba8dce2c, type: 3}
+  Bea: {fileID: 21300000, guid: 6db385efdb98a584ca2b301df991c20c, type: 3}
+  Cynthia: {fileID: 21300000, guid: 6db385efdb98a584ca2b301df991c20c, type: 3}
+  Emilia: {fileID: 21300000, guid: fddcdd529ae938b48be46d8a5cd6afa5, type: 3}
   Heather: {fileID: 21300000, guid: 5b3dfea1a34f3624892dad6956551d10, type: 3}
   Logan: {fileID: 21300000, guid: 93961c980e1c77b4180a98275059768a, type: 3}
-  Madison: {fileID: 21300000, guid: 54245f11c5206ff4b9cf725a79c3925a, type: 3}
-  Asheton: {fileID: 21300000, guid: c343e3d9201e80849a212e5f52867ce6, type: 3}
+  Madison: {fileID: 21300000, guid: 1bc081aba97ccd74893bf4c351267ad1, type: 3}
+  Asheton: {fileID: 21300000, guid: e44f8ccb34bd77646b47f9d4a81a2f21, type: 3}
   BeaHead: {fileID: 0}
   CynthiaHead: {fileID: 21300000, guid: dbec8b772d7338e4eaba6bef63fe9f32, type: 3}
-  EmiliaHead: {fileID: 0}
+  EmiliaHead: {fileID: 21300000, guid: ec3eac67a43259e469b185c80e08293e, type: 3}
   HeatherHead: {fileID: 0}
   LoganHead: {fileID: 0}
-  MadisonHead: {fileID: 0}
-  AshetonHead: {fileID: 0}
+  MadisonHead: {fileID: 21300000, guid: d8deee37d205fe4469c7b0502c8ff747, type: 3}
+  AshetonHead: {fileID: 21300000, guid: 84dbce2df8b3f4d4e9a0441fa69b513e, type: 3}
   Shambler: {fileID: 21300000, guid: de8d57e38aaebcf48b63928d9137f7f3, type: 3}
   Shrieker: {fileID: 21300000, guid: ac583f2cf227b8145abc6c96f58086f5, type: 3}
   Strider: {fileID: 21300000, guid: 355d4b12a2c9e9244b0cbd3b0b999e11, type: 3}

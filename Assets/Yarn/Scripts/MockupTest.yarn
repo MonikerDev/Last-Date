@@ -8,5 +8,11 @@ Ashe: It's over Cyn, we can't run any further...
 ->Cynthia: You're right Ashe
 ->Cynthia: ...
 
+Ashe: You made a choice!
+
+->Cynthia: Set $bobo to FALSE
+    <<set $bobo to false>>
+->Cynthia: Set $bobo to TRUE
+    <<set $bobo to true>>
 
 ===
