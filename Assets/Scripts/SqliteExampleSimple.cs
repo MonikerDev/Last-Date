@@ -24,7 +24,7 @@ public class SqliteExampleSimple : MonoBehaviour
         }
 
         // Remember to always close the connection at the end.
-        dbConnection.Close(); // 20
+        dbConnection.Close(); // 2
     }
 
     private void OnMouseDown()

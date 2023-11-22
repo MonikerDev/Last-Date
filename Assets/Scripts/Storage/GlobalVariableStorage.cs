@@ -39,8 +39,26 @@ public static class GlobalVariableStorage
 	{
         CurrentEncounter.AddRange(Party);
 
-        CurrentEncounter.AddRange(GlobalUtility.CreateEncounter());
+        //CurrentEncounter.AddRange(GlobalUtility.CreateEncounter());
 	}
+
+    public static string GetEncounterAsText()
+	{
+        string characters = "";
+
+        foreach(string str in CurrentEncounter)
+		{
+            characters += str + ", ";
+		}
+
+        foreach (string str in Party)
+		{
+            characters += str + ", ";
+		}
+
+        return characters;
+	}
+
 
     public static IDbConnection CreateAndOpenDatabase()
     {

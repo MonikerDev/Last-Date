@@ -89,13 +89,14 @@ public class Madison : Unit
 	//Dmg def down, hit all, high cost
 	public void SuppressingFire()
 	{
-		this.TakeStamina(10);
+		this.TakeStamina(20);
 		DialogLineMapper.QueueLine(this.charName + " sprays a line of suppressing fire!");
 
 		foreach(Unit target in BattleController.enemies)
 		{
 			target.TakeDamage(BattleController.CalculateDamage(30, this, target));
-			target.ChangeStat(1, StatType.defense);
+			target.ChangeStat(-1, StatType.defense);
+			target.ChangeStat(-1, StatType.speed);
 			DialogLineMapper.QueueLine(target.charName + " stumbles backwards...");
 		}
 	}
@@ -103,17 +104,8 @@ public class Madison : Unit
 	//Atk up, stamina up
 	public void Aim(Unit target)
 	{
-		this.TakeStamina(5);
+		this.TakeStamina(10);
 		this.ChangeStat(1, StatType.attack);
-		
-		if(this.currStm + 15 >= this.bsStm)
-		{
-			this.currStm = this.bsStm;
-		}
-		else
-		{
-			this.currStm += 15;
-		}
 
 		isAiming = true;
 		aimedTarget = target;
@@ -128,8 +120,10 @@ public class Madison : Unit
 
 		if (isAiming)
 		{
-			aimedTarget.TakeDamage(2 * BattleController.CalculateDamage(100, this, aimedTarget));
+			aimedTarget.TakeDamage(2 * BattleController.CalculateDamage(200, this, aimedTarget));
 			DialogLineMapper.QueueLine(this.charName + " follows through with her aimed shot, hitting a bullseye!");
+			this.aimedTarget = null;
+			this.isAiming = false;
 		}
 		else
 		{

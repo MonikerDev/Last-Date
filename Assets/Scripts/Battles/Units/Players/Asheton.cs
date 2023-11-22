@@ -111,6 +111,17 @@ public class Asheton : Unit
         BattleController.targets.Add(target);
     }
 
+    /*
+     * If first turn of move
+     *      Make this sneaking
+     *      Display effects
+     *      Hide Sprite
+     * else
+     *      display effects
+     *      return sprite to field
+     *      do damage and make this not sneaking
+     */
+
     //Damage++ / med cost
     public void BackStab(Unit target)
     {

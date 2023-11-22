@@ -131,7 +131,7 @@ public class Bea : Unit
 		foreach (Unit target in BattleController.enemies)
 		{
 			DialogLineMapper.QueueLine(target.charName + " is reeling...");
-			int damage = BattleController.CalculateDamage(10, this, target);
+			int damage = BattleController.CalculateDamage(100, this, target);
 			target.TakeDamage(damage);
             
             int roll = Random.Range(0, 10);

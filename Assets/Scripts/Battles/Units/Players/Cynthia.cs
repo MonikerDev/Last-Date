@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Profiling;
 
+/*
+ * Turn (Move name, Traget)
+ * {
+ *  Run method that shares a name
+ *  with the move name using the given target
+ * }
+ */
 public class Cynthia : Unit
 {
     public Cynthia(int bsAtk, int bsDef, 

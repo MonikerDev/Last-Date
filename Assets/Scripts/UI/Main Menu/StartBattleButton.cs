@@ -7,11 +7,13 @@ public class StartBattleButton : MonoBehaviour
 {
     public void StartBattle()
 	{
-        GlobalVariableStorage.AddToParty("Cynthia");
-        GlobalVariableStorage.AddToParty("Ashe");
-        GlobalVariableStorage.AddToParty("Emi");
-        GlobalVariableStorage.AddToParty("Madi");
-        GlobalVariableStorage.CompileEncounter();
-        SceneManager.LoadScene("TurnBasedBattleArena");
+		if(GlobalVariableStorage.Party.Count > 0 && (GlobalVariableStorage.CurrentEncounter.Count + GlobalVariableStorage.Party.Count) >= (GlobalVariableStorage.Party.Count)){
+			GlobalVariableStorage.CompileEncounter();
+			SceneManager.LoadScene("TurnBasedBattleArena");
+		}
+		else
+		{
+			Debug.Log("Invalid Encounter");
+		}
     }
 }

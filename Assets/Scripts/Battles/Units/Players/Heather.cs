@@ -92,7 +92,7 @@ public class Heather : Unit
 	{
 		this.TakeStamina(10);
 		DialogLineMapper.QueueLine("Heather hypes herself up");
-		this.ChangeStat(1, StatType.speed);
+		this.ChangeStat(2, StatType.speed);
 	}
 
 	//Gives an ally spd up and restores stamina to them
@@ -101,6 +101,7 @@ public class Heather : Unit
 		this.TakeStamina(15);
 		DialogLineMapper.QueueLine("Heather offers " + target.charName + " a helping hand");
 		target.ChangeStat(1, StatType.speed);
+		target.ChangeStat(1, StatType.defense);
 	}
 
 	//Deals damage++ has chance to damage self???

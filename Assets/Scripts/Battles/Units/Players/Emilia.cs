@@ -57,6 +57,10 @@ public class Emilia : Unit
 
     public override bool Turn(string move, Unit target)
 	{
+		if (denied)
+		{
+			denied = false;
+		}
 
 		if (!isStunned)
 		{

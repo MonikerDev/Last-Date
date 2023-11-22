@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -15,9 +15,9 @@ public class BattleController : MonoBehaviour
 {
     //BattleSprites
     public Image player1;
-	public Image player2;
-	public Image player3;
-	public Image player4;
+    public Image player2;
+    public Image player3;
+    public Image player4;
     public static Image[] playerImages = new Image[4];
     public static Dictionary<string, Image> imgMap = new Dictionary<string, Image>();
 
@@ -42,8 +42,8 @@ public class BattleController : MonoBehaviour
     public List<string> characters = new List<string>();
 
 
-	//Typer componenets
-	public bool doneTyping = false;
+    //Typer componenets
+    public bool doneTyping = false;
 
     //Ui Components
     public TMP_Text output;
@@ -104,9 +104,9 @@ public class BattleController : MonoBehaviour
         enemyImages[3] = enemy4;
 
         PlayerPortraits[0] = portrait1;
-		PlayerPortraits[1] = portrait2;
-		PlayerPortraits[2] = portrait3;
-		PlayerPortraits[3] = portrait4;
+        PlayerPortraits[1] = portrait2;
+        PlayerPortraits[2] = portrait3;
+        PlayerPortraits[3] = portrait4;
 
         //characters.Add("Cynthia");
         //characters.Add("Asheton");
@@ -118,13 +118,14 @@ public class BattleController : MonoBehaviour
 
 
         this.characters.AddRange(GlobalVariableStorage.CurrentEncounter);
+        GlobalVariableStorage.CurrentEncounter.Clear();
 
         foreach (string character in characters)
-		{
-			AddCharacter(character);
-		}
+        {
+            AddCharacter(character);
+        }
 
-		StartCoroutine(Battle());
+        StartCoroutine(Battle());
     }
 
     // Start is called before the first frame update
@@ -197,8 +198,8 @@ public class BattleController : MonoBehaviour
                             attackOptions[i].text = battlers[battlerIndex].moves[i].name;
 
                             //If move too expensive
-                            if(battlers[battlerIndex].moves[i].cost > battlers[battlerIndex].currStm)
-							{
+                            if (battlers[battlerIndex].moves[i].cost > battlers[battlerIndex].currStm)
+                            {
                                 attackButtons[i].interactable = false;
                             }
                         }
@@ -273,8 +274,8 @@ public class BattleController : MonoBehaviour
 
                     while (DialogLineMapper.hasLines)
                     {
-						yield return DialogLineMapper.Type((done) => doneTyping = done, DialogLineMapper.GetNextLine(), output);
-					}
+                        yield return DialogLineMapper.Type((done) => doneTyping = done, DialogLineMapper.GetNextLine(), output);
+                    }
 
                     foreach (Unit target in targets)
                     {
@@ -318,10 +319,10 @@ public class BattleController : MonoBehaviour
 
                     battlers[battlerIndex].Turn("does not matter", battlers[battlerIndex].ChooseTarget("does not matter"));
 
-					while (DialogLineMapper.hasLines)
-					{
-						yield return DialogLineMapper.Type((done) => doneTyping = done, DialogLineMapper.GetNextLine(), output);
-					}
+                    while (DialogLineMapper.hasLines)
+                    {
+                        yield return DialogLineMapper.Type((done) => doneTyping = done, DialogLineMapper.GetNextLine(), output);
+                    }
 
                     foreach (Unit target in targets)
                     {
@@ -346,7 +347,7 @@ public class BattleController : MonoBehaviour
                 }
 
             }
-  
+
             if (players.Count == 0)
             {
                 DialogLineMapper.QueueLine("You Lose");
@@ -369,17 +370,17 @@ public class BattleController : MonoBehaviour
         }
         while (!isOver);
 
-        foreach(Image image in playerImages)
+        foreach (Image image in playerImages)
         {
             image.enabled = false;
         }
-		foreach (Image image in enemyImages)
-		{
-			image.enabled = false;
-		}
+        foreach (Image image in enemyImages)
+        {
+            image.enabled = false;
+        }
 
         EndBattle();
-	}
+    }
 
     public static Move SaveChosenMove(Unit caller)
     {
@@ -387,7 +388,7 @@ public class BattleController : MonoBehaviour
 
         for (int i = 0; i < caller.moves.Count; i++)
         {
-            if(caller.moves[i].name == moveName)
+            if (caller.moves[i].name == moveName)
             {
                 chosenMove = caller.moves[i];
                 return chosenMove;
@@ -424,25 +425,25 @@ public class BattleController : MonoBehaviour
                     PlayerPortraits[playerSpot].tag = cynthia.charName;
                     sliders = PlayerPortraits[playerSpot].GetComponentsInChildren<Slider>();
 
-                    for(int i = 0; i < sliders.Length; i++)
-					{
-                        if(sliders[i].tag == "health")
-						{
+                    for (int i = 0; i < sliders.Length; i++)
+                    {
+                        if (sliders[i].tag == "health")
+                        {
                             Debug.Log("It work");
                             sliders[i].maxValue = cynthia.bsHp;
                             sliders[i].value = cynthia.currHp;
-						}
-                        else if(sliders[i].tag == "stamina")
-						{
+                        }
+                        else if (sliders[i].tag == "stamina")
+                        {
                             sliders[i].maxValue = cynthia.bsStm;
                             sliders[i].value = cynthia.currStm;
                         }
-					}
+                    }
                     PlayerPortraits[playerSpot].GetComponentInChildren<TMP_Text>().text = cynthia.currHp + "\n" + cynthia.currStm;
-                    if(battlerManager.CynthiaHead != null)
-					{
+                    if (battlerManager.CynthiaHead != null)
+                    {
                         PlayerPortraits[playerSpot].GetComponentInChildren<Image>().sprite = battlerManager.CynthiaHead;
-					}
+                    }
                     PlayerPortraits[playerSpot].SetActive(true);
 
                     if (battlerManager.Cynthia != null)
@@ -537,7 +538,7 @@ public class BattleController : MonoBehaviour
                     }
                     playerSpot++;
                 }
-				break;
+                break;
             case "Logan":
                 if (playerSpot < 4)
                 {
@@ -578,13 +579,13 @@ public class BattleController : MonoBehaviour
                     }
                     playerSpot++;
                 }
-				break;
+                break;
             case "Ashe":
-				if (playerSpot < 4)
-				{
-					Asheton asheton = new Asheton(12, 12, 10, 120, 12, 12, 12, 10, 120, 12);
-					battlers.Add(asheton);
-					players.Add(asheton);
+                if (playerSpot < 4)
+                {
+                    Asheton asheton = new Asheton(12, 12, 10, 120, 12, 12, 12, 10, 120, 12);
+                    battlers.Add(asheton);
+                    players.Add(asheton);
 
                     PlayerPortraits[playerSpot].tag = asheton.charName;
                     sliders = PlayerPortraits[playerSpot].GetComponentsInChildren<Slider>();
@@ -610,14 +611,14 @@ public class BattleController : MonoBehaviour
                     PlayerPortraits[playerSpot].SetActive(true);
 
                     if (battlerManager.Asheton != null)
-					{
-						playerImages[playerSpot].sprite = battlerManager.Asheton;
-						playerImages[playerSpot].enabled = true;
+                    {
+                        playerImages[playerSpot].sprite = battlerManager.Asheton;
+                        playerImages[playerSpot].enabled = true;
                         imgMap.Add(character, playerImages[playerSpot]);
                     }
                     playerSpot++;
-				}
-				break;
+                }
+                break;
             case "Emi":
 
                 if (playerSpot < 4)
@@ -654,7 +655,7 @@ public class BattleController : MonoBehaviour
                     if (battlerManager.Emilia != null)
                     {
                         playerImages[playerSpot].sprite = battlerManager.Emilia;
-						playerImages[playerSpot].enabled = true;
+                        playerImages[playerSpot].enabled = true;
                         imgMap.Add(character, playerImages[playerSpot]);
                     }
                     playerSpot++;
@@ -695,7 +696,7 @@ public class BattleController : MonoBehaviour
                     if (battlerManager.Madison != null)
                     {
                         playerImages[playerSpot].sprite = battlerManager.Madison;
-						playerImages[playerSpot].enabled = true;
+                        playerImages[playerSpot].enabled = true;
                         imgMap.Add(character, playerImages[playerSpot]);
                     }
                     playerSpot++;
@@ -715,70 +716,70 @@ public class BattleController : MonoBehaviour
                     if (battlerManager.Shambler != null)
                     {
                         enemyImages[enemySpot].sprite = battlerManager.Shambler;
-						enemyImages[enemySpot].enabled = true;
-					}
+                        enemyImages[enemySpot].enabled = true;
+                    }
                     enemySpot++;
                 }
                 break;
             case "Shrieker":
-				if (enemySpot < enemyImages.Length)
-				{
-					enemyLetter = (char)(shriekerCount + 65);
-					shriekerCount++;
-					Shrieker shrieker = new Shrieker("Shrieker " + enemyLetter, 12, 12, 12, 9, 12, 12, 12, 12, 30, 12);
-					battlers.Add(shrieker);
-					enemies.Add(shrieker);
+                if (enemySpot < enemyImages.Length)
+                {
+                    enemyLetter = (char)(shriekerCount + 65);
+                    shriekerCount++;
+                    Shrieker shrieker = new Shrieker("Shrieker " + enemyLetter, 12, 12, 12, 9, 12, 12, 12, 12, 30, 12);
+                    battlers.Add(shrieker);
+                    enemies.Add(shrieker);
 
-					if (battlerManager.Shrieker != null)
-					{
-						enemyImages[enemySpot].sprite = battlerManager.Shrieker;
-						enemyImages[enemySpot].enabled = true;
-					}
-					enemySpot++;
-				}
-				break;
-            case "Strider":
-				if (enemySpot < enemyImages.Length)
-				{
-					enemyLetter = (char)(striderCount + 65);
-					striderCount++;
-					Strider strider = new Strider("Strider " + enemyLetter, 12, 12, 12, 30, 12, 12, 12, 12, 30, 12);
-					battlers.Add(strider);
-					enemies.Add(strider);
-
-					if (battlerManager.Strider != null)
-					{
-						enemyImages[enemySpot].sprite = battlerManager.Strider;
+                    if (battlerManager.Shrieker != null)
+                    {
+                        enemyImages[enemySpot].sprite = battlerManager.Shrieker;
                         enemyImages[enemySpot].enabled = true;
-					}
-					enemySpot++;
-				}
-				break;
+                    }
+                    enemySpot++;
+                }
+                break;
+            case "Strider":
+                if (enemySpot < enemyImages.Length)
+                {
+                    enemyLetter = (char)(striderCount + 65);
+                    striderCount++;
+                    Strider strider = new Strider("Strider " + enemyLetter, 12, 12, 12, 30, 12, 12, 12, 12, 30, 12);
+                    battlers.Add(strider);
+                    enemies.Add(strider);
+
+                    if (battlerManager.Strider != null)
+                    {
+                        enemyImages[enemySpot].sprite = battlerManager.Strider;
+                        enemyImages[enemySpot].enabled = true;
+                    }
+                    enemySpot++;
+                }
+                break;
         }
     }
 
     public static void UpdateHealthbar(Unit target)
-	{
+    {
         foreach (GameObject obj in PlayerPortraits)
         {
             if (obj.tag == target.charName)
             {
                 Slider[] sliders = obj.GetComponentsInChildren<Slider>();
 
-                for(int i = 0; i < sliders.Length; i++)
-				{
-                    if(sliders[i].tag == "health")
-					{
+                for (int i = 0; i < sliders.Length; i++)
+                {
+                    if (sliders[i].tag == "health")
+                    {
                         sliders[i].value = target.currHp;
                         obj.GetComponentInChildren<TMP_Text>().text = target.currHp + "\n" + target.currStm;
                     }
-				}
+                }
             }
         }
     }
 
     public static void UpdateStaminaBar(Unit target)
-	{
+    {
         foreach (GameObject obj in PlayerPortraits)
         {
             if (obj.tag == target.charName)
@@ -799,9 +800,8 @@ public class BattleController : MonoBehaviour
 
     //For demo
     public void EndBattle()
-	{
+    {
         SceneManager.LoadScene("BattleTesterHome");
-	}
+    }
 }
-
 
