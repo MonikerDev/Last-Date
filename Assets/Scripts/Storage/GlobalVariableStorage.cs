@@ -144,4 +144,19 @@ public static class GlobalVariableStorage
         return result;
     }
 
+    public static void PickupItem(string itemName)
+	{
+        conn = CreateAndOpenDatabase();
+
+        SqliteParameter param = new SqliteParameter("$key", itemName);
+        SqliteParameter param2 = new SqliteParameter("$value", 1);
+
+        IDbCommand command = conn.CreateCommand();
+        command.CommandText = "INSERT OR REPLACE INTO YarnBools (key, value) VALUES ($key, $value)";
+        command.Parameters.Add(param);
+        command.Parameters.Add(param2);
+        command.ExecuteNonQuery();
+
+        conn.Close();
+	}
 }
