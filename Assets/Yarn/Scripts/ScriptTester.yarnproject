@@ -1,0 +1,10 @@
+{
+  "projectFileVersion": 2,
+  "sourceFiles": [
+    "**/CynthiaMeetCute.yarn"
+  ],
+  "excludeFiles": [],
+  "localisation": {},
+  "baseLanguage": "en",
+  "compilerOptions": {}
+}

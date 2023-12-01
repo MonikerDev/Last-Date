@@ -1,0 +1,199 @@
+﻿title: CynthiaMeetCute
+tags:
+---
+<<declare $playerName = "Joe" as String>>
+<<declare $cynthiaFavor = 0 as Number>>
+
+<<declare $liedDown = false as Bool>>
+
+//Enter Cynthia Stage right
+In a grassy field in the main concourse, a girl is laying in the grass
+Grass Girl: ...
+Grass Girl: ...
+Grass Girl: ...
+She doesn't seem to have noticed you
+-> Lie down next to her
+    <<jump LiedDown>>
+-> Sneak up on her
+    <<jump SneakUp>>
+->Ask her what she's doing
+    <<set $cynthiaFavor to $cynthiaFavor - 5>>
+    {$playerName}: Hey, uh, whatcha doin'?
+    Grass Girl: Watchin' the sky
+    ->That's cool
+        Grass Girl: Yup
+    ->Why?
+    ->...
+        Grass Girl:...
+        Grass Girl: Did you, uh, need something?
+===
+
+title: LiedDown
+position: -311,215
+---
+<<set $liedDown to true>>
+    You walk up slowly, sit down and then lie in the grass next to her
+    After some time, it seems she still has not noticed you...
+    ->Reach for her hand
+        You slowly reach your hand over until you make contact with hers, placing your palm against hers
+        Grass Girl: Oh hi there
+        She rolls over to face you
+        Grass Girl: Is this how you greet everyone, or were you just feeling particularly quirky today?
+        ->Yes, it's customary
+            Cynthia: Well I'd be glad to respect your customs.
+        ->No, just you
+            <<set $cynthiaFavor to $cynthiaFavor + 1>>
+            Grass Girl: Awh, way to make a girl feel special
+            There's a big smile across her face despite the empty look in her eyes
+            Grass Girl: But, uhm. Why me? Like you've got good taste in women, heh, but we just met?
+            ->You're hot
+                Grass Girl: That's what they all say
+                {$playerName}: Well you are
+                Grass Girl: Awh, thankies~
+                Grass Girl: My name's Cynthia, but I don't mind you calling me beautiful
+                {$playerName}:
+            ->I desperately need a date
+                Cynthia: I may be able to help with that...
+            ->uwu
+                Cynthia:uwu
+                A smug look spreads across her face
+        ->Does it matter?
+            <<set $cynthiaFavor to $cynthiaFavor - 2>>
+            Grass Girl: Nah, just curious
+            She fully takes your hand in hers and shakes it
+            Grass Girl: I'm Cynthia by the way
+            {$playerName}: I'm {$playerName}
+            Cynthia: Nice to meet you.
+            She lets go of your hand.
+    ->Roll on your side to face her
+        {$playerName}: Hey
+        Grass Girl: Hey
+        {$playerName}: What's up?
+        The girl points up
+        Grass Girl: The sky?
+        You both sit there in silence for a moment...
+        Grass Girl: So, uh, whatcha want?
+        ->You?
+            <<set $cynthiaFavor to $cynthiaFavor + 3>>
+            Grass Girl: cute
+            Grass Girl: I don't think I've heard that one before
+            {$playerName}: ...
+            She sighs
+            Grass Girl: I have to admit it was at least a little clever
+            She turns to face you
+            Grass Girl: You were set up for it by yours truly
+            She winks
+            Grass Girl: You can call me Cyn by the way. It's short for Cynthia
+            ->Nice to meet you, Cyn
+            ->My name's {$playerName}
+            ->I didn't think that'd work...
+                <<set $cynthiaFavor to $cynthiaFavor + 3>>
+                Grass Girl: Neither did I, but here we are
+                Grass Girl: I'm Cynthia by the way.
+                {$playerName}: {$playerName}
+                Grass Girl: Nice to meet you, so uh, you want my number?
+                She holds her hand out for your phone, and creates her self a new contact
+                You take your phone back and see "Cyn~ <3" saved as a new contact
+        ->I don't know
+        ->To escape the endless void that is human life
+    ->Clear your throat
+    ->Continue laying there, staring at the sky
+        You lay there staring at the sky, blue filling your soul
+        The girl hums softly as she does the same, still not addressing you
+        ->Stare at the sky
+        ->Stare at the sky
+        ->Stare at the sky
+        <<set $cynthiaFavor to $cynthiaFavor + 5>>
+        Grass Girl: You ever wonder if you're actually human?
+        Grass Girl: Like there's something so inexplicably different about you, it makes you question if you're a person to begin with?
+        ->What?
+            <<set $cynthiaFavor to $cynthiaFavor - 1>>
+        ->Yes, all the time...
+            <<set $cynthiaFavor to $cynthiaFavor + 5>>
+            Grass Girl:
+        ->...
+===
+
+title: SneakUp
+position: 214,155
+---
+You walk softly as you approach, crouching as she comes into view
+The girl softly hums as she stares straight up at the sky, an empty look on her face
+She idly grabs at the grass as you approach, her attention sucked into the atmosphere
+You are now crouched beside her, ready to strike
+->Introduce yourself
+->Whisper to get her attention
+->Pounce
+    <<set $cynthiaFavor to $cynthiaFavor - 5>>
+        You make some final micro adjustments in your postion before jumping on top of her, pinning her to the ground
+        Grass Girl: G-wah!
+        Grass Girl: What the hell?
+        ->Introduce yourself
+        ->Ask her out
+        ->Apologize
+            {$playerName}: Sorry!
+        ->Stay Silent
+            {$playerName}: ...
+            Grass Girl: ...
+            {$playerName}: ...
+            Grass Girl: ...
+            Grass Girl: So, uh, what's up?
+            ->Point to the sky
+                <<set $cynthiaFavor to $cynthiaFavor + 2>>
+                Grass Girl: Oh, haha, ha, hoo.
+                Grass Girl: I've, uh, never been sat on before.
+                Grass Girl: Usually I'm the one doing the sitting.
+                She winks at you
+                Grass Girl: Could you get off of me?
+                ->Get off of her
+                    <<set $cynthiaFavor to $cynthiaFavor + 2>>
+                    You roll over into the grass beside her
+                    The girl giggles
+                    Grass Girl: That was certainly an experience
+                    Grass Girl: Anyways the name is Cynthia
+                    She holds her hand out to you
+                    {$playerName}: You can call me {$playerName}
+                    <<if $playerName == "The Author">>
+                        Cynthia: That name feel familiar...
+                        Cynthia: Have we met before?
+                    <<endif>>
+                    Cynthia: Nice to meet you, {$playerName}
+                ->Stare her in the eyes
+                    She stares back, the hollow look in her eyes persisting, a beautiful smile still plastered across her face
+                    You both sit there staring for a moment
+                    Grass Girl: ...
+                    {$playerName}: ...
+                    <<set $cynthiaFavor to $cynthiaFavor + 1>>
+            -> Nothing much, how about you?
+            -> ...
+                You sit there, as she stares you in the eyes
+                Her lips are curled into a charming smile
+                -> Break the silence
+                -> ...
+===
+
+title: End
+position: -64,407
+---
+Cynthia: Anyways...
+She gets up to her feet, offerring you a hand to help you up
+Brushing grass off her skirt she looks up at you
+<<if $cynthiaFavor > 10>>
+    Cynthia: We should, uh, get coffee some time or something
+    She gives you a wink and cheerful smile before walking away
+<<elseif $cynthiaFavor < 0>>
+    Cynthia: So yeah...
+    She gives you a wide smile before turning around and skipping away
+<<elseif $liedDown == true && $cynthiaFavor > 10>>
+    She wraps her arms around you in a tight hug before slowly letting go
+    Cynthia stares you in the eyes
+    Cynthia: Don't be a stranger, ok?
+    ${$playerName}: I won't. I promise
+    Cynthia: Good
+    She flashes you a smile before walking away confidently
+    With a twirl she turns around and blows you a kiss before skipping away
+<<else>>
+    Cynthia: Call me sometime, ok?
+    She makes a heart heart with her fingers and walks away with a smile.
+<<endif>>
+===

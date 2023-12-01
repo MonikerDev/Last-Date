@@ -8,7 +8,7 @@ Ashe: It's over Cyn, we can't run any further...
 ->Cynthia: You're right Ashe
 ->Cynthia: ...
 
-Ashe: You made a choice!
+Ashe: [wave]You made a choice![/wave]
 
 ->Cynthia: Set $bobo to FALSE
     <<set $bobo to false>>

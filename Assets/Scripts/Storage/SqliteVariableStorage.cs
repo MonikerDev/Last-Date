@@ -41,6 +41,7 @@ public class SqliteVariableStorage : VariableStorageBehaviour
             if (reader.Read())
             {
                 result = (T)(object)reader.GetString(1);
+                Debug.Log("String read in");
                 return true;
             }
         }
