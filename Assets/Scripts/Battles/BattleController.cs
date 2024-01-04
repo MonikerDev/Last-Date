@@ -108,17 +108,21 @@ public class BattleController : MonoBehaviour
         PlayerPortraits[2] = portrait3;
         PlayerPortraits[3] = portrait4;
 
-        //characters.Add("Cynthia");
-        //characters.Add("Asheton");
-        //characters.Add("Heather");
-        //characters.Add("Logan");
+		characters.Add("Cynthia");
+		characters.Add("Ashe");
+		characters.Add("Heather");
+		characters.Add("Logan");
+        characters.Add("Shrieker");
+        characters.Add("Shrieker");
+        characters.Add("Shrieker");
+
         //characters.Add("Bea");
         //characters.Add("Madison");
         //characters.Add("Emilia");
 
 
-        this.characters.AddRange(GlobalVariableStorage.CurrentEncounter);
-        GlobalVariableStorage.CurrentEncounter.Clear();
+        //this.characters.AddRange(GlobalVariableStorage.CurrentEncounter);
+        //GlobalVariableStorage.CurrentEncounter.Clear();
 
         foreach (string character in characters)
         {
@@ -128,15 +132,18 @@ public class BattleController : MonoBehaviour
         StartCoroutine(Battle());
     }
 
-    // Start is called before the first frame update
+    // Main Coroutine
     public IEnumerator Battle()
     {
         int battlerIndex = -1;
 
+        //Iterate through battler list
         do
         {
             Debug.Log("Players: " + players.Count + "\nEnemies: " + enemies.Count);
 
+            //If in the middle of the list, continue
+            //Else reset
             if (battlerIndex < (battlers.Count - 1))
             {
                 battlerIndex++;
@@ -148,6 +155,7 @@ public class BattleController : MonoBehaviour
 
             Debug.Log("current battle index: " + battlerIndex);
 
+            //At the start of each round, calculate turn order
             if (battlerIndex == 0)
             {
                 battlers.Sort();
@@ -164,15 +172,19 @@ public class BattleController : MonoBehaviour
                 Debug.Log("TOP OF THE ROUND");
             }
 
+            //In case system fails to remove dead units. make sure it is alive to work
             if (!battlers[battlerIndex].isDead)
             {
                 output.text = "";
 
+                //Player turn
                 if (battlers[battlerIndex].type == UnitType.player)
                 {
+                    //Give the character their start of turn stamina
                     battlers[battlerIndex].TakeStamina(-5);
                     UpdateStaminaBar(battlers[battlerIndex]);
 
+                    //If nothing is happening to instant end a turn, start UI
                     if (!battlers[battlerIndex].isStunned && !(battlers[battlerIndex] is Asheton && ((battlers[battlerIndex] as Asheton).isSneaking == true)) && !(battlers[battlerIndex] is Emilia && ((battlers[battlerIndex] as Emilia).plansLaid == true)))
                     {
                         yield return DialogLineMapper.Type((done) => doneTyping = done, "It is " + battlers[battlerIndex].charName + "'s turn", output);
@@ -181,6 +193,7 @@ public class BattleController : MonoBehaviour
 
                         mainButtonContainer.SetActive(true);
 
+                        //Wait for player input
                         yield return new WaitWhile(() => waitingForMainChoice);
 
                         foreach (Button button in attackButtons)
@@ -191,6 +204,7 @@ public class BattleController : MonoBehaviour
                         waitingForMainChoice = true;
                         Debug.Log(waitingForMainChoice);
 
+                        //Populate move buttons
                         int moveCount = 0;
 
                         for (int i = 0; i < battlers[battlerIndex].moves.Count; i++)
@@ -207,6 +221,7 @@ public class BattleController : MonoBehaviour
                         mainButtonContainer.SetActive(false);
                         actionButtonContainer.SetActive(true);
 
+                        //Wait for player input
                         yield return new WaitWhile(() => waitingForMoveChoice);
                         waitingForMoveChoice = true;
 
