@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Battle/TurnBasedBattleArena.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Mockups for design/DialogMockUp.unity
+    guid: 042e8c41a0ada9943b2a18e95e4eeaf3
   m_configObjects: {}

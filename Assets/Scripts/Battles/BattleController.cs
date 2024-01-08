@@ -204,8 +204,8 @@ public class BattleController : MonoBehaviour
                         waitingForMainChoice = true;
                         Debug.Log(waitingForMainChoice);
 
-                        //Populate move buttons
-                        int moveCount = 0;
+                        ////Populate move buttons
+                        //int moveCount = 0;
 
                         for (int i = 0; i < battlers[battlerIndex].moves.Count; i++)
                         {

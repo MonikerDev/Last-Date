@@ -10,9 +10,7 @@ Ashe: It's over Cyn, we can't run any further...
 
 Ashe: [wave]You made a choice![/wave]
 
-->Cynthia: Set $bobo to FALSE
-    <<set $bobo to false>>
-->Cynthia: Set $bobo to TRUE
-    <<set $bobo to true>>
+->Cynthia: It's cutscene time!
 
+<<loadCutscene AsheMockBig>>
 ===
