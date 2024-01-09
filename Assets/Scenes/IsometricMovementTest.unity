@@ -576,10 +576,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d68861e0d1f714a4fb433721f1d21c58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movSpeed: 5
-  maxSpeed: 20
-  minSpeed: 5
-  accellerationRate: 0.2
+  movSpeed: 10
+  maxSpeed: 30
+  minSpeed: 10
+  accellerationRate: 1
   currAccellerationRate: 0
   deccellerationRate: 0.6
   currDeccellerationRate: 0
