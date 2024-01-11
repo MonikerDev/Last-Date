@@ -9,6 +9,9 @@ using UnityEngine;
 
 public static class GlobalVariableStorage
 {
+    //Scene Management
+    public static string previousScene;
+
     //database
     private static IDbConnection conn;
 
@@ -37,9 +40,10 @@ public static class GlobalVariableStorage
 
     public static void CompileEncounter()
 	{
+        CurrentEncounter.Clear();
         CurrentEncounter.AddRange(Party);
 
-        //CurrentEncounter.AddRange(GlobalUtility.CreateEncounter());
+        CurrentEncounter.AddRange(GlobalUtility.CreateEncounter());
 	}
 
     public static string GetEncounterAsText()
