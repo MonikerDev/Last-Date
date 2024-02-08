@@ -91,6 +91,8 @@ public class Logan : Unit
     //Random Effect From generous selction
     public void Tinker()
     {
+        DialogLineMapper.QueueLine("Logan is tinkering...");
+
         this.TakeStamina(15);
 
         int upgradePotency = 25;
@@ -304,11 +306,13 @@ public class Logan : Unit
         //Single Heavy Damage 95-98
         else if (effect > 94 && effect < 99)
         {
+            DialogLineMapper.QueueLine("Logan makes a makeshift taser and attacks " + BattleController.enemies[singleTargetEnemy].charName);
             BattleController.enemies[singleTargetEnemy].TakeDamage(BattleController.CalculateDamage(200, this, BattleController.enemies[singleTargetEnemy]));
         }
         //All Heavy Damage 99-100
         else if (effect > 98 && effect <= 100)
         {
+            DialogLineMapper.QueueLine("Logan fires a rocket out of her backpack!");
             foreach (Unit u in BattleController.enemies)
             {
                 u.TakeDamage(BattleController.CalculateDamage(200, this, u));
@@ -317,8 +321,11 @@ public class Logan : Unit
         //Crescendo all stats up, enemy damage, 100% stun
         else if(effect == 0)
 		{
+            DialogLineMapper.QueueLine("Logan presses a button on her satchel, causing it to transform into a massive war machine");
+
             foreach(Unit u in BattleController.players)
 			{
+                DialogLineMapper.QueueLine("It throws a cannister of stimulant gas at the party");
                 u.ChangeStat(2, StatType.speed);
                 u.ChangeStat(2, StatType.defense);
                 u.ChangeStat(2, StatType.attack);
@@ -326,6 +333,7 @@ public class Logan : Unit
 
             foreach(Unit u in BattleController.enemies)
 			{
+                DialogLineMapper.QueueLine("It slams a massive fist down!");
                 u.TakeDamage(BattleController.CalculateDamage(200, this, u));
                 u.isStunned = true;
             }

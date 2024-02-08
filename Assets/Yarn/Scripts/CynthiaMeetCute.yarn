@@ -383,6 +383,7 @@ Now crouched beside her, you are prepared to strike...
             //Finished path
         ->Apologize
             {$playerName}: Sorry!
+            //finished path
         ->Stay Silent
             <<jump StaySilent>>
 <<jump End>>
@@ -641,9 +642,6 @@ position: -7,1001
             She waves back with a half-hearted smile, before hastily walking away
         -> ...
             She gets up and walks away slowly, watching you over her shoulder
-    <<else>>
-        {$cynthia}: Call me sometime, ok?
-        She makes a heart heart with her fingers and walks away with a smile.
     <<endif>>
 <<endif>>
 ===
