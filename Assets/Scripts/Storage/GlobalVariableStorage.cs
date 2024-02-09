@@ -12,6 +12,11 @@ public static class GlobalVariableStorage
     //Scene Management
     public static string previousScene;
 
+    //Setting Management
+    public static string location = "Test";
+    public static string day = "Friday";
+    public static int time = 378;
+
     //database
     private static IDbConnection conn;
 

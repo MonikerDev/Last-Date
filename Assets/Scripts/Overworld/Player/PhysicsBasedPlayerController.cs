@@ -16,7 +16,7 @@ public class PhysicsBasedPlayerController : MonoBehaviour
 	private bool canSprint;
 	public float sprintSpeed;
 	public MovementState state;
-	private float currSprintEnergy;
+	public float currSprintEnergy;
 	public float maxSprintEnergy;
 	private bool sprintCanRegen;
 	public float sprintCoolDown;
