@@ -25,7 +25,7 @@ public class PhysicsBasedPlayerController : MonoBehaviour
 	public float jumpForce;
 	public float jumpCooldown;
 	public float airMultiplier;
-	public bool readyToJump;
+	public static bool readyToJump;
 	public float jumpStamCost;
 
 	[Header("Crouching")]
@@ -37,6 +37,7 @@ public class PhysicsBasedPlayerController : MonoBehaviour
 	public bool isHidden;
 	public bool isQuiet;
 	public bool isNoisy;
+	public LayerMask whatisCover;
 
 	[Header("KeyBinds")]
 	public KeyCode jumpKey = KeyCode.Space;
@@ -95,8 +96,6 @@ public class PhysicsBasedPlayerController : MonoBehaviour
 	{
 		grounded = Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, castDistance, whatIsGround);
 
-		Debug.Log("[PlayerController][Update] grounded = " + grounded);
-
 		StateHandler();
 		StealthHandler();
 		HandleInput();
@@ -112,6 +111,16 @@ public class PhysicsBasedPlayerController : MonoBehaviour
 			rb.drag = groundDrag;
 		else
 			rb.drag = 0;
+	}
+
+	public void HideCharacter()
+	{
+		this.isHidden = true;
+	}
+
+	public void UnHideCharacter()
+	{
+		this.isHidden = false;
 	}
 
 	private void FixedUpdate()
@@ -191,6 +200,11 @@ public class PhysicsBasedPlayerController : MonoBehaviour
 		{
 			state = MovementState.air;
 		}
+
+		if(state != MovementState.crouching && isHidden)
+		{
+			UnHideCharacter();
+		}
 	}
 
 	public void StealthHandler()
@@ -218,8 +232,6 @@ public class PhysicsBasedPlayerController : MonoBehaviour
 	private void MovePlayer()
 	{
 		Vector2 moveDirection = new Vector2(horizontalInput, 0f);
-
-		Debug.Log("[PlayerController][MovePlayer]: Current movespeed = " + moveSpeed);
 
 		if (grounded)
 			rb.AddForce(moveDirection * moveSpeed * 10f, ForceMode2D.Force);

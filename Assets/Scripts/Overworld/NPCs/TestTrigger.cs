@@ -17,7 +17,6 @@ public class TestTrigger : MonoBehaviour
 	private void Start()
 	{
 		c2d = this.GetComponent<Collider2D>();
-		dr =
 		dr = DialogSystem.GetComponent<DialogueRunner>();
 	}
 
@@ -40,14 +39,16 @@ public class TestTrigger : MonoBehaviour
 	public void EndDialog()
 	{
 		dialogStarted = false;
-		PlayerController.canMove = true;
+		PhysicsBasedPlayerController.canMove = true;
+		PhysicsBasedPlayerController.readyToJump = true;
 	}
 
 	private void Update()
 	{
 		if (playerTouch && !dialogStarted && Input.GetKeyUp(KeyCode.Space))
 		{
-			PlayerController.canMove = false;
+			PhysicsBasedPlayerController.canMove = false;
+			PhysicsBasedPlayerController.readyToJump = false;
 			dr.StartDialogue(dialogNode);
 			dialogStarted = true;
 			UnityEngine.Events.UnityEvent endDialog = new UnityEngine.Events.UnityEvent();
