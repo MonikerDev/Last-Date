@@ -6,13 +6,15 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-	public string Name;
+	public string itemName;
 	public Sprite Sprite;
+	public string description;
 
 	//Added for capstone requirements
 	//May not be in final game
 	public float quantity;
 
+	//use an item
 	public void Use()
     {
 		if(this.quantity > 0)
@@ -28,7 +30,7 @@ public class Item : MonoBehaviour
 	{
 		IDbConnection conn = GlobalVariableStorage.CreateAndOpenDatabase();
 
-		SqliteParameter param = new SqliteParameter("$name", Name);
+		SqliteParameter param = new SqliteParameter("$name", itemName);
 
 		IDbCommand command = conn.CreateCommand();
 		command.CommandText = "INSERT OR REPLACE INTO YarnBools (key, value) VALUES ($name, 1)";

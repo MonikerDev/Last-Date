@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 
 public class InventoryController : MonoBehaviour
@@ -9,7 +10,22 @@ public class InventoryController : MonoBehaviour
     //Pull in items from sqlite
     public void GetItemsFromDB()
     {
+        IDbConnection conn = GlobalVariableStorage.CreateAndOpenDatabase();
 
+        IDbCommand comm = conn.CreateCommand();
+        comm.CommandText = "SELECT * FROM items";
+
+        IDataReader reader = comm.ExecuteReader();
+
+        while (reader.Read())
+        {
+            items.Add(new Item
+            {
+                name = reader.GetString(1),
+                quantity = reader.GetInt32(1),
+                description = reader.GetString(1)
+            });
+        }
     }
 
     //Save Items to database
