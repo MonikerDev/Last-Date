@@ -20,7 +20,6 @@ public class Coverhandler : MonoBehaviour
 
 	private void OnTriggerStay2D(Collider2D collision)
 	{
-		Debug.Log("It continues");
 		if (collision.gameObject.tag == "Player" && !player.isHidden &&
 			player.state == PhysicsBasedPlayerController.MovementState.crouching)
 		{

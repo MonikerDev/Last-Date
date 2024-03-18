@@ -5,13 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Battle/BattleTesterHome.unity
     guid: 0657fbd757f1e0644aca8511957d36c1
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Battle/TurnBasedBattleArena.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Mockups for design/DialogMockUp.unity
     guid: 042e8c41a0ada9943b2a18e95e4eeaf3
   - enabled: 1

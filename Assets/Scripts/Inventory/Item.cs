@@ -9,9 +9,21 @@ public class Item : MonoBehaviour
 	public string Name;
 	public Sprite Sprite;
 
+	//Added for capstone requirements
+	//May not be in final game
+	public float quantity;
 
+	public void Use()
+    {
+		if(this.quantity > 0)
+        {
+			this.quantity -= 1;
+        }
+    }
 
 	//NOT FINSIHED NEEDS TO SET NOT SELECT
+	//Used for non-stackable items
+	//where quantity does not matter
 	public void TriggerFlag()
 	{
 		IDbConnection conn = GlobalVariableStorage.CreateAndOpenDatabase();

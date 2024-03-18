@@ -217,6 +217,17 @@ public class PhysicsBasedPlayerController : MonoBehaviour
 				isNoisy = false;
 				break;
 			case MovementState.walking:
+				if(rb.velocity.x == 0)
+                {
+					isQuiet = true;
+					isNoisy = false;
+                }
+                else
+                {
+					isQuiet = false;
+					isNoisy = false;
+                }
+				break;
 			case MovementState.air:
 				isQuiet = false;
 				isNoisy = false;
