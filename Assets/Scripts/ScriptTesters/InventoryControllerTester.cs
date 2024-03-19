@@ -23,7 +23,7 @@ public class InventoryControllerTester : MonoBehaviour
             description = "can do it"
         });
 
-        items[3].Use();
+        items[1].Use();
 
         InventoryController.SaveItems();
     }

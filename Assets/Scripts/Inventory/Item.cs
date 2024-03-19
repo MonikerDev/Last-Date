@@ -28,6 +28,13 @@ public class Item
         {
 			this.quantity -= 1;
         }
+
+		Debug.Log(this.itemName + " was used!");
+
+		if(this.quantity == 0)
+        {
+			Debug.Log("You used your last " + this.itemName);
+        }
     }
 
 	//NOT FINSIHED NEEDS TO SET NOT SELECT

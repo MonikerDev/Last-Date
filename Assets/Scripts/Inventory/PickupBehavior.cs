@@ -4,12 +4,20 @@ using UnityEngine;
 
 public class PickupBehavior : MonoBehaviour
 {
-    public string itemName;
+	public string itemName;
+	public Item item;
 	bool playerHere = false;
 
+	//Pull in item from database
+    private void Start()
+    {
+		item = InventoryController.GetItem(itemName);
+    }
+
+	//Add item to inventory
     public void Pickup()
 	{
-		GlobalVariableStorage.PickupItem("$" + itemName);
+		InventoryController.AddItem(item);
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
@@ -35,7 +43,7 @@ public class PickupBehavior : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.Space) && playerHere)
 		{
 			Pickup();
-			Debug.Log(itemName + " was picked up");
+			Debug.Log(item.itemName + " was picked up");
 		}
 	}
 }
