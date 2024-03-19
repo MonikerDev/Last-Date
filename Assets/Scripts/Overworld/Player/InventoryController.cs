@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Mono.Data.Sqlite;
 using System.Data;
 using UnityEngine;
 
 public class InventoryController : MonoBehaviour
 {
-    private List<Item> items = new List<Item>();
+    public static List<Item> items = new List<Item>();
 
     //Pull in items from sqlite
-    public void GetItemsFromDB()
+    public static void GetItemsFromDB()
     {
         IDbConnection conn = GlobalVariableStorage.CreateAndOpenDatabase();
 
@@ -19,29 +20,49 @@ public class InventoryController : MonoBehaviour
 
         while (reader.Read())
         {
+            Debug.Log("Receiving Item");
+
             items.Add(new Item
             {
-                name = reader.GetString(1),
-                quantity = reader.GetInt32(1),
-                description = reader.GetString(1)
+                itemName = reader.GetString(0),
+                quantity = reader.GetFloat(1),
+                description = reader.GetString(2)
             });
         }
+
+        conn.Close();
     }
 
     //Save Items to database
-    public void SaveItems()
+    public static void SaveItems()
     {
+        IDbConnection conn = GlobalVariableStorage.CreateAndOpenDatabase();
 
+        foreach (Item item in items)
+        {
+            SqliteParameter name = new SqliteParameter("$name", item.itemName);
+            SqliteParameter qty = new SqliteParameter("$quantity", item.quantity);
+            SqliteParameter description = new SqliteParameter("$description", item.description);
+            
+            IDbCommand comm = conn.CreateCommand();
+            comm.CommandText = "INSERT OR REPLACE INTO items (name, quantity, description) VALUES ($name, $quantity, $description)";
+            comm.Parameters.Add(name);
+            comm.Parameters.Add(qty);
+            comm.Parameters.Add(description);
+            comm.ExecuteNonQuery();
+        }
+
+        conn.Close();
     }
 
     //Pass item from internal list based on request;
-    public Item GetItem(string itemName)
+    public static Item GetItem(string itemName)
     {
         Item item = null;
 
         foreach (Item thing in items)
         {
-            if (thing.name == itemName)
+            if (thing.itemName == itemName)
             {
                 item = thing;
             }
@@ -50,13 +71,13 @@ public class InventoryController : MonoBehaviour
         return item;
     }
 
-    public void UseItem(string itemName)
+    public static void UseItem(string itemName)
     {
         Item item = null;
 
         foreach (Item thing in items)
         {
-            if (thing.name == itemName)
+            if (thing.itemName == itemName)
             {
                 item = thing;
             }
@@ -70,7 +91,7 @@ public class InventoryController : MonoBehaviour
         }
     }
 
-    public void AddItem(Item item)
+    public static void AddItem(Item item)
     {
         items.Add(item);
     }

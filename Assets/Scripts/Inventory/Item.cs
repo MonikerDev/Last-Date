@@ -4,15 +4,22 @@ using System.Collections.Generic;
 using System.Data;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public class Item
 {
-	public string itemName;
+	//Secret mouskatool for later
 	public Sprite Sprite;
+
+	//Necessities
+	public string itemName;
 	public string description;
 
 	//Added for capstone requirements
 	//May not be in final game
+	//Intend to use yarn to manage
+	//all flags, including pickups
 	public float quantity;
+
+	public Item() { }
 
 	//use an item
 	public void Use()
