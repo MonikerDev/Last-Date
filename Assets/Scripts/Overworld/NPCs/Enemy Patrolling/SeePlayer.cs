@@ -33,6 +33,35 @@ public class SeePlayer : MonoBehaviour
         this.transform.position = host.transform.position;
         bc.offset = new Vector2(radius - Xoffset, Yoffset);
     }
+
+    //If brief glimpse, should be different on hold
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Player")
+        {
+            //Spot player and start chasing even if they leave vision radius
+            host.SpotPlayer(collision.transform.position);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            //If they stay within continue to update their position
+            host.SpotPlayer(collision.transform.position);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.tag == "Player")
+        {
+            //If lost player continue to last place they
+            //were seen and look around
+            host.LostPlayer();
+        }
+    }
     //private void OnDrawGizmos()
     //{
     //    Gizmos.color = Color.green;

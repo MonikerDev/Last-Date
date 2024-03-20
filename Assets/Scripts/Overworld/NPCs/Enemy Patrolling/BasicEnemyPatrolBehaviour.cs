@@ -28,6 +28,9 @@ public class BasicEnemyPatrolBehaviour : MonoBehaviour
     [Header("Player Detection")]
     public float visionRadius;
     public float hearingRadius;
+    public bool seesPlayer = false;
+    public bool hearsPlayer = false;
+    public Vector3 playerLoc;
 
     Rigidbody2D rb;
 
@@ -67,14 +70,16 @@ public class BasicEnemyPatrolBehaviour : MonoBehaviour
 
     private void StateHandler()
     {
+        //There may be a more efficient
+        //Place for this
+        Flip();
+
         if(state == EnemyState.idle)
         {
             moveSpeed = 0;
 
             if (idleTimer <= 0)
             {
-                this.transform.localScale = new Vector3(patrolDir, this.transform.localScale.y, this.transform.localScale.z);
-
                 switch (prevState)
                 {
                     case EnemyState.patrolling:
@@ -83,12 +88,19 @@ public class BasicEnemyPatrolBehaviour : MonoBehaviour
                     case EnemyState.returning:
                         state = EnemyState.patrolling;
                         break;
+                    case EnemyState.chasing:
+                        state = EnemyState.searching;
+                        break;
                     default:
                         state = EnemyState.patrolling;
                         break;
                 }
 
                 idleTimer = idleSeconds;
+            }
+            else if(seesPlayer || hearsPlayer)
+            {
+                state = EnemyState.chasing;
             }
             else
             {
@@ -98,30 +110,56 @@ public class BasicEnemyPatrolBehaviour : MonoBehaviour
         else if(state == EnemyState.patrolling)
         {
             moveSpeed = walkSpeed;
+            patrolDir = 1;
 
-            if(transform.position.x - roamingPoint.x >= roamDistance)
+            if (transform.position.x - roamingPoint.x >= roamDistance)
             {
-                patrolDir *= -1;
-                //state = EnemyState.returning;
-
                 prevState = EnemyState.patrolling;
                 state = EnemyState.idle;
+            }
+            else if(this.seesPlayer || this.hearsPlayer)
+            {
+                state = EnemyState.chasing;
             }
         }
         else if(state == EnemyState.returning)
         {
             moveSpeed = walkSpeed;
+            patrolDir = -1;
 
             if (transform.position.x + roamingPoint.x <= (-1 * roamDistance))
             {
-                patrolDir *= -1;
-                //state = EnemyState.patrolling;
-
                 prevState = EnemyState.returning;
                 state = EnemyState.idle;
             }
+            else if (this.seesPlayer || this.hearsPlayer)
+            {
+                state = EnemyState.chasing;
+            }
         }
-  
+        else if(state == EnemyState.chasing)
+        {
+            moveSpeed = sprintSpeed;
+            
+            if(Vector3.Distance(playerLoc, this.transform.position) < 1f 
+                && !seesPlayer)
+            {
+                this.state = EnemyState.idle;
+                this.prevState = EnemyState.chasing;
+            }
+        }
+        else if(state == EnemyState.searching)
+        {
+            patrolDir = (-1 * Mathf.Sign(this.transform.position.x - roamingPoint.x));
+            moveSpeed = walkSpeed;
+
+            Debug.Log(Vector3.Distance(roamingPoint, this.transform.position));
+
+            if(Vector3.Distance(roamingPoint, this.transform.position) < 2f)
+            {
+                this.state = EnemyState.patrolling;
+            }
+        }
     }
 
     private void Patrol()
@@ -139,5 +177,30 @@ public class BasicEnemyPatrolBehaviour : MonoBehaviour
             Vector2 limitedVel = flatVel.normalized * moveSpeed;
             rb.velocity = new Vector2(limitedVel.x, rb.velocity.y);
         }
+    }
+
+    //Was overthinking this
+    public void SpotPlayer(Vector3 location)
+    {
+        this.seesPlayer = true;
+        playerLoc = location;
+    }
+
+    //Was overthinking this
+    public  void HearPlayer()
+    {
+        this.hearsPlayer = true;
+    }
+
+    //Helps for readability :)
+    public void LostPlayer()
+    {
+        this.seesPlayer = false;
+    }
+
+    private void Flip()
+    {
+        this.transform.localScale = new Vector3(patrolDir, 
+            this.transform.localScale.y, this.transform.localScale.z);
     }
 }

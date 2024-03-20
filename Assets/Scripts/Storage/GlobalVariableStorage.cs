@@ -9,6 +9,9 @@ using UnityEngine;
 
 public static class GlobalVariableStorage
 {
+    //Player Contained for Things to access
+    public static PhysicsBasedPlayerController player;
+
     //Scene Management
     public static string previousScene;
 
