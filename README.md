@@ -14,7 +14,10 @@ Unity was the engine of choice for this game project. We used __2022.1.7f1__ sin
 
 ### __Yarnspinner__
 
+Yarnspinner is a dialog engine built by _Yarn Spinner ltd._ originally for _Secret Lab's_ _"Night in the Woods"_. As it is opensource for use, it made for a great way to implement dialog without worrying about the overall control of it. 
 
+> [!TIP]
+> You can find more info as well as their details [here](https://www.yarnspinner.dev).
 
 ### __SQlite__
 
