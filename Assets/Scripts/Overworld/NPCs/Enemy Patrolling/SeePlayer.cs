@@ -5,6 +5,7 @@ using UnityEngine;
 public class SeePlayer : MonoBehaviour
 {
     //Thing Seeing Player
+    [Header("Host")]
     public BasicEnemyPatrolBehaviour host;
 
     //Collider
@@ -14,6 +15,7 @@ public class SeePlayer : MonoBehaviour
     private float radius;
 
     //Tweaking
+    [Header("Offsets")]
     public float Xoffset;
     public float Yoffset;
 

@@ -16,7 +16,12 @@ public class CameraFollowPlayer : MonoBehaviour
     public float minY;
     public float maxY;
 
-	private void Update()
+    private void Start()
+    {
+        player = GlobalVariableStorage.playerInstance.gameObject;
+    }
+
+    private void Update()
 	{
         cameraOffset = new Vector2(Mathf.Clamp(player.transform.position.x +
             xOffSet, minX, maxX), Mathf.Clamp(player.transform.position.y + yOffSet, minY, maxY));

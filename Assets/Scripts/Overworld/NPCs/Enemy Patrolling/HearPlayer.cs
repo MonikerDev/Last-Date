@@ -34,6 +34,25 @@ public class HearPlayer : MonoBehaviour
         bc.offset = new Vector2(Xoffset, Yoffset);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Player")
+        {
+            if (!GlobalVariableStorage.playerInstance.GetComponent<PhysicsBasedPlayerController>().isQuiet)
+            {
+                host.HearPlayer(collision.transform.position);
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            host.LostPlayer();
+        }
+    }
+
     //private void OnDrawGizmos()
     //{
     //    Gizmos.color = Color.red;

@@ -52,6 +52,11 @@ public class PhysicsBasedPlayerController : MonoBehaviour
 	private Vector2 boxSize;
 	private float castDistance;
 
+	[Header("Invincibility Frames")]
+	public bool canCollide = true;
+	public float IframeDuration;
+
+
 	float horizontalInput;
 	float verticalInput;
 
@@ -62,15 +67,26 @@ public class PhysicsBasedPlayerController : MonoBehaviour
 
 	public enum MovementState
 	{
+		still,
 		slowWalking,
 		walking,
 		sprinting,
 		crouching,
+		crouchWalking,
 		air
 	}
 
-	private void Start()
+    private void Awake()
+    {
+		this.transform.position = GlobalVariableStorage.instance.playerLoc;
+    }
+
+    private void Start()
 	{
+		Debug.Log("Created player instance");
+
+		GlobalVariableStorage.playerInstance = this;
+
 		rb = GetComponent<Rigidbody2D>();
 
 		canMove = true;
@@ -80,8 +96,8 @@ public class PhysicsBasedPlayerController : MonoBehaviour
 		currSprintEnergy = maxSprintEnergy;
 		ResetJump();
 
-		//Get Y scale for crouching
-		startYScale = transform.localScale.y;
+		////Get Y scale for crouching
+		//startYScale = transform.localScale.y;
 
 		//Setup Ground Detection
 		boxSize = new Vector2(playerHeight * 0.5f, playerHeight);
@@ -100,6 +116,14 @@ public class PhysicsBasedPlayerController : MonoBehaviour
 		StealthHandler();
 		HandleInput();
 		SpeedControl();
+
+		Debug.Log(horizontalInput + " != " + this.transform.localScale.x);
+
+		if(this.transform.localScale.x != horizontalInput && horizontalInput != 0)
+        {
+			Debug.Log("Flipped");
+			Flip();
+        }
 
 		if (currSprintEnergy <= 0)
 		{
@@ -155,12 +179,12 @@ public class PhysicsBasedPlayerController : MonoBehaviour
 
 		if (Input.GetKeyDown(crouchKey))
 		{
-			transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
-			rb.AddForce(Vector3.down * 5f, ForceMode2D.Impulse);
+			//transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
+			//rb.AddForce(Vector3.down * 5f, ForceMode2D.Impulse);
 		}
 		if (Input.GetKeyUp(crouchKey))
 		{
-			transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
+			//transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
 		}
 	}
 
@@ -168,7 +192,14 @@ public class PhysicsBasedPlayerController : MonoBehaviour
 	{
 		if (Input.GetKey(crouchKey))
 		{
-			state = MovementState.crouching;
+			if(horizontalInput == 0)
+            {
+				state = MovementState.crouching;
+			}
+            else
+            {
+				state = MovementState.crouchWalking;
+            }
 			moveSpeed = crouchSpeed;
 		}
 		else if (Input.GetKey(slowWalkKey))
@@ -181,6 +212,10 @@ public class PhysicsBasedPlayerController : MonoBehaviour
 			state = MovementState.sprinting;
 			moveSpeed = sprintSpeed;
 
+		}
+		else if (horizontalInput == 0)
+		{
+			state = MovementState.still;
 		}
 		else if (grounded)
 		{
@@ -279,4 +314,28 @@ public class PhysicsBasedPlayerController : MonoBehaviour
 	{
 		sprintCanRegen = true;
 	}
+
+	public void TriggerIFrames()
+    {
+		canCollide = false;
+
+		Invoke(nameof(EndIFrames), IframeDuration);
+
+		Debug.Log("Player cannot collide");
+    }
+
+	private void EndIFrames()
+    {
+		Debug.Log("Player can collide");
+		canCollide = true;
+    }
+
+	private void Flip()
+    {
+		if(horizontalInput != 0)
+        {
+			this.transform.localScale = new Vector3(Mathf.Abs(this.transform.localScale.x) * horizontalInput, 
+				this.transform.localScale.y, this.transform.localScale.z);
+		}
+    }
 }

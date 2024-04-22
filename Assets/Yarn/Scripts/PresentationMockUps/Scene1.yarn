@@ -1,0 +1,26 @@
+﻿title: Start
+tags:
+---
+
+<<MakeAngry Cynthia>>
+Cynthia: I can't believe you!
+
+<<MakeSad Bea>>
+Bea: Wha-what do you mean?
+
+<<MakePissed Cynthia>>
+Cynthia: You messed everything up!
+===
+
+title: Scene2
+---
+
+<<MakeSad Bea>>
+Bea: I can't believe we left Heather back there...
+
+<<MakeSad Cynthia>>
+Cynthia: We had to, Bea.
+
+<<MakeNeutral Bea>>
+Bea: I know.
+===

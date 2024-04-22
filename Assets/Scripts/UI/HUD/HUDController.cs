@@ -21,6 +21,8 @@ public class HUDController : MonoBehaviour
 
 	private void Start()
 	{
+        player = GlobalVariableStorage.playerInstance;
+
         SetupStamBar();
         UpdateLocation();
         UpdateTime();

@@ -9,7 +9,12 @@ public class Coverhandler : MonoBehaviour
 	[Header("Hiding Modifiers")]
 	public float hideDelay;
 
-	private void OnTriggerEnter2D(Collider2D collision)
+    private void Awake()
+    {
+		player = GlobalVariableStorage.playerInstance;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
 	{
 		if(collision.tag == "Player" && !player.isHidden && 
 			player.state == PhysicsBasedPlayerController.MovementState.crouching)

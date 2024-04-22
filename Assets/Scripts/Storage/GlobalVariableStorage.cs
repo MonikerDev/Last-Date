@@ -7,13 +7,21 @@ using System.IO;
 using System.Xml.XPath;
 using UnityEngine;
 
-public static class GlobalVariableStorage
+public class GlobalVariableStorage : MonoBehaviour
 {
-    //Player Contained for Things to access
-    public static PhysicsBasedPlayerController player;
+    //Making this static
+    public static GlobalVariableStorage instance;
+    public static PhysicsBasedPlayerController playerInstance;
+    public GameObject playerPrefab;
+
+    public Vector3 playerLoc;
 
     //Scene Management
     public static string previousScene;
+    public static Waypoint returnPoint;
+
+    //Saving
+    public static Transform savePoint;
 
     //Setting Management
     public static string location = "Test";
@@ -35,6 +43,25 @@ public static class GlobalVariableStorage
     public static Madison madison;
     public static Logan logan;
     public static Emilia emilia;
+
+    private void Awake()
+    {
+        //Make this persist
+        if(instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+
+        if(playerInstance == null)
+        {
+            playerInstance = Instantiate(playerPrefab).GetComponent<PhysicsBasedPlayerController>();
+        }
+    }
 
     public static void AddToParty(string unit)
 	{

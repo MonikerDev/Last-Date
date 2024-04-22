@@ -25,12 +25,22 @@ public class BasicEnemyPatrolBehaviour : MonoBehaviour
     public Vector3 roamingPoint; //Center point for roaming
     public float roamDistance; // How far to go from point
 
-    [Header("Player Detection")]
+    [Header("Vision")]
     public float visionRadius;
-    public float hearingRadius;
     public bool seesPlayer = false;
-    public bool hearsPlayer = false;
     public Vector3 playerLoc;
+
+    //Enemy saves heard position
+    //And roams near it
+    [Header("Hearing")]
+    public float hearingRadius;
+    public bool hearsPlayer = false;
+    public Vector3 heardPlace;
+    public Vector3 placeHolder; //hehe puns
+    
+    [Header("Searching")]
+    private float currSearchTime;
+    public float maxSearchTime;
 
     Rigidbody2D rb;
 
@@ -51,6 +61,8 @@ public class BasicEnemyPatrolBehaviour : MonoBehaviour
         {
             roamingPoint = this.transform.position;
         }
+
+        placeHolder = roamingPoint;
 
         patrolDir = 1;
 
@@ -117,9 +129,13 @@ public class BasicEnemyPatrolBehaviour : MonoBehaviour
                 prevState = EnemyState.patrolling;
                 state = EnemyState.idle;
             }
-            else if(this.seesPlayer || this.hearsPlayer)
+            else if(this.seesPlayer)
             {
                 state = EnemyState.chasing;
+            }
+            else if (this.hearsPlayer)
+            {
+                state = EnemyState.searching;
             }
         }
         else if(state == EnemyState.returning)
@@ -132,9 +148,13 @@ public class BasicEnemyPatrolBehaviour : MonoBehaviour
                 prevState = EnemyState.returning;
                 state = EnemyState.idle;
             }
-            else if (this.seesPlayer || this.hearsPlayer)
+            else if (this.seesPlayer)
             {
                 state = EnemyState.chasing;
+            }
+            else if (this.hearsPlayer)
+            {
+                state = EnemyState.searching;
             }
         }
         else if(state == EnemyState.chasing)
@@ -150,14 +170,20 @@ public class BasicEnemyPatrolBehaviour : MonoBehaviour
         }
         else if(state == EnemyState.searching)
         {
-            patrolDir = (-1 * Mathf.Sign(this.transform.position.x - roamingPoint.x));
-            moveSpeed = walkSpeed;
+            //this DOES NOT WORK
+            placeHolder = roamingPoint;
+            roamingPoint = heardPlace;
+            state = EnemyState.patrolling;
+        }
 
-            Debug.Log(Vector3.Distance(roamingPoint, this.transform.position));
+        if(roamingPoint != placeHolder)
+        {
+            currSearchTime -= Time.deltaTime;
 
-            if(Vector3.Distance(roamingPoint, this.transform.position) < 2f)
+            if(currSearchTime <= 0)
             {
-                this.state = EnemyState.patrolling;
+                roamingPoint = placeHolder;
+                currSearchTime = maxSearchTime;
             }
         }
     }
@@ -187,15 +213,17 @@ public class BasicEnemyPatrolBehaviour : MonoBehaviour
     }
 
     //Was overthinking this
-    public  void HearPlayer()
+    public  void HearPlayer(Vector3 location)
     {
         this.hearsPlayer = true;
+        heardPlace = location;
     }
 
     //Helps for readability :)
     public void LostPlayer()
     {
         this.seesPlayer = false;
+        this.hearsPlayer = false;
     }
 
     private void Flip()

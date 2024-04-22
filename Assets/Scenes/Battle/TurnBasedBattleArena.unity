@@ -8182,6 +8182,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: BattleController
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9038850052415993543, guid: 2ccc3132e8bddce4eae3d4e354a92e88, type: 3}
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ccc3132e8bddce4eae3d4e354a92e88, type: 3}

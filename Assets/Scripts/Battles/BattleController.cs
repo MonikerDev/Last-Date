@@ -108,23 +108,23 @@ public class BattleController : MonoBehaviour
         PlayerPortraits[2] = portrait3;
         PlayerPortraits[3] = portrait4;
 
-		//characters.Add("Cynthia");
-		//characters.Add("Ashe");
-		//characters.Add("Heather");
-		//characters.Add("Logan");
-		//      characters.Add("Shrieker");
-		//      characters.Add("Shrieker");
-		//      characters.Add("Shrieker");
+        characters.Add("Cynthia");
+        //characters.Add("Ashe");
+        //characters.Add("Heather");
+        //characters.Add("Logan");
+        //      characters.Add("Shrieker");
+        characters.Add("Shrieker");
+        characters.Add("Shrieker");
 
-		//characters.Add("Bea");
-		//characters.Add("Madison");
-		//characters.Add("Emilia");
+        //characters.Add("Bea");
+        //characters.Add("Madison");
+        //characters.Add("Emilia");
 
 
-		this.characters.AddRange(GlobalVariableStorage.CurrentEncounter);
-		GlobalVariableStorage.CurrentEncounter.Clear();
+        //this.characters.AddRange(GlobalVariableStorage.CurrentEncounter);
+        //GlobalVariableStorage.CurrentEncounter.Clear();
 
-		foreach (string character in characters)
+        foreach (string character in characters)
         {
             AddCharacter(character);
         }

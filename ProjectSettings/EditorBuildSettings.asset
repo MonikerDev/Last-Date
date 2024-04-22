@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/OverworldTesting/MovementTest.unity
     guid: 3b2c3e72668c05c45a9a7f67ae73f8c1
+  - enabled: 1
+    path: Assets/Scenes/OverworldTesting/StealthTest.unity
+    guid: a958df8bab7429d4cb91eabbcba89a42
   m_configObjects: {}
