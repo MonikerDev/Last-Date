@@ -38,3 +38,5 @@ Yarnspinner is a dialog engine built by _Yarn Spinner ltd._ originally for _Secr
 > [!TIP]
 > You can find more info as well as their details [here](https://www.yarnspinner.dev).
 
+> [!WARNING]
+> As this is a proof of concept, the project is not guaranteed to finish and all design decisions are subject to change.
