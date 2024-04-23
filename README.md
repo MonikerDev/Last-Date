@@ -55,6 +55,8 @@ Among every overworld gimmick, exploring takes time. Moving from one section of 
 
 ### __Enemy AI__
 
+![A flowchart describing the enemy AI Loop](/GithubImages/enemyLogic.png)
+
 ### __Database__
 <!-->Diagrams for SQLite DB<-->
 All of the game's triggers and flags are handled in a single shared database.
