@@ -1,3 +1,17 @@
+<!-->
+Develop an Internet facing Senior Project Portfolio web site that can be accessed by potential employers. 
+The web site can be custom web site hosted on any Internet Hosting Company or can be Markdown pages developed and employed on a GIT repository, such as Github or Bitbucket. 
+The web site at a minimum should contain:
+   an overview the project, DONE
+   appropriate design diagrams, 
+   code snippets, 
+   other desired supporting artifacts, 
+   and details of the background of the project, 
+   approach to implementation, 
+   and how the user needs to do to run/access the project. DONE 
+This portfolio should fully summarize and demonstrate the work completed during the Senior Project in CST-451 and CST-452
+<-->
+
 
 # __LAST DATE__
 
@@ -17,11 +31,34 @@ One of the key elements of keeping the player feeling cornered is the imposed ti
 
 ### __Combat__
 
+![A screenshot showing the battle system layout. There are four player characters on the left, and enemies on the right. To the right side of the screen are four portraits of the player characters with their health and energy. At the bottom is the dialog box with the options for the player turn.](https://imgur.com/a/d2i1TwG)
+
+
+
 Combat in games can be clunky or intrusive to the flow of things, but in this case, they are to subvert the standard horror formula of the monster instantly killing you if it finds you. The player is given a chance to struggle away or hold their ground but at the cost of their wellbeing. Getting caught is not final but it is in no way rewarding by design. Damage is relatively permanent and means to heal oneself are far and few between. Overall, it is intended to best be avoided.
 
 ### __Exploration__
 
 Among every overworld gimmick, exploring takes time. Moving from one section of town to the other costs time, so the player will need to be careful with how often they move between subsections of the map. While the sections are big enough to allow a handful of things to do per section, the player will often need to go between them for questlines and following story threads. The design of the map needs to make it feel like there is something to find everywhere in the map, that exploring holds valuable secrets. There needs to be a careful balance between it and other activities for surviving. Each location holds different valuable information or needs for progression. Some doors require keys, dark places require a light source, and some places are restricted from public access. 
+
+## __Background__
+
+<!-->Snippet talking about inspirations and how the idea came to be<-->
+
+## __Implementation__
+
+### __Battle System__
+<!-->Show Battle System Design<-->
+
+### __Movement System__
+<!-->Movement System?<-->
+
+### __Enemy AI__
+
+### __Database__
+<!-->Diagrams for SQLite DB<-->
+All of the game's triggers and flags are handled in a single shared database.
+
 
 ## __Project Goals__
 
