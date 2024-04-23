@@ -23,6 +23,9 @@ Combat in games can be clunky or intrusive to the flow of things, but in this ca
 
 Among every overworld gimmick, exploring takes time. Moving from one section of town to the other costs time, so the player will need to be careful with how often they move between subsections of the map. While the sections are big enough to allow a handful of things to do per section, the player will often need to go between them for questlines and following story threads. The design of the map needs to make it feel like there is something to find everywhere in the map, that exploring holds valuable secrets. There needs to be a careful balance between it and other activities for surviving. Each location holds different valuable information or needs for progression. Some doors require keys, dark places require a light source, and some places are restricted from public access. 
 
+## __Project Goals__
+
+As of right now the project is simply a prototype. The idea was novel on paper but turned out to be less fun to play than anticipated. This means that the overall design needs a few reworks, and while there are ideas recorded efforts will not be made to implement them until further notice. However, for the goal of building the prototype itself, all requirements were met and the prototype was satisfactory despite its short comings.
 
 ## __Technologies Used__
 
@@ -35,14 +38,19 @@ Unity was the engine of choice for this game project. We used __2022.1.7f1__ sin
 
 ### __Yarnspinner__
 
-Yarnspinner is a dialog engine built by _Yarn Spinner ltd._ originally for _Secret Lab's_ _"Night in the Woods"_. As it is opensource for use, it made for a great way to implement dialog without worrying about the overall control of it. 
+Yarnspinner is a dialog engine built by _Yarn Spinner ltd._ originally for _Secret Lab's "Night in the Woods"_. As it is opensource for use, it made for a great way to implement dialog without worrying about the overall control of it. 
 
 > [!TIP]
 > You can find more info as well as their details [here](https://www.yarnspinner.dev).
 
 ## __Notes__
 
-
+* The game needs a complete redesign, but theoretically the only issue is the combat system
+* There were some systems imagined that were out of scope for the time frame
+  * A fleshed out item system for use in combat
+  * Overworld decay
+  * Character-specific stats
+  * A full overworld map and host of locations
 
 > [!WARNING]
 > As this is a proof of concept, the project is not guaranteed to finish and all design decisions are subject to change.
