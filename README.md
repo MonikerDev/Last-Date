@@ -52,5 +52,9 @@ Yarnspinner is a dialog engine built by _Yarn Spinner ltd._ originally for _Secr
   * Character-specific stats
   * A full overworld map and host of locations
 
+## __HOW TO PLAY__
+
+As of right now there is no direct way to play as this repository is the uncompiled code. However official builds and releases may be posted, and links to the downloads and or instructions can be found here upon the change of that fact.
+
 > [!WARNING]
-> As this is a proof of concept, the project is not guaranteed to finish and all design decisions are subject to change.
+> As this is a proof of concept, the project is not guaranteed to be finished and all design decisions are subject to change.
