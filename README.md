@@ -45,7 +45,20 @@ Among every overworld gimmick, exploring takes time. Moving from one section of 
 
 <!-->Snippet talking about inspirations and how the idea came to be<-->
 
+
 ## __Implementation__
+
+### __Dialog__
+
+![A screen of dialog where a blond girl is saying "Bea I cannot believe you"](/GithubImages/DialogScreen.png)
+
+The dialog system for Last Date will be handling Yarn Spinner, a scripting language and library built by Secret Lab for making story-driven games. Yarn Spinner allows all dialog to be written in easy to export scripts that can include commands tied to functions to handle game logic during dialog. It handles the mapping of character names to lines, and animation and logic cues within the scripts themselves. This means that the core of the dialogue systems is already built, leaving only customization and polish for the purposes of Last Date. The most basic of which are the different animation functions in the YarnUtility script for controlling characters during scenes. 
+
+### __Yarn__
+
+![An example of a yarn script](/GithubImages/yarnScript.png)
+
+
 
 ### __Battle System__
 <!-->Show Battle System Design<-->
