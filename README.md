@@ -1,18 +1,3 @@
-<!-->
-Develop an Internet facing Senior Project Portfolio web site that can be accessed by potential employers. 
-The web site can be custom web site hosted on any Internet Hosting Company or can be Markdown pages developed and employed on a GIT repository, such as Github or Bitbucket. 
-The web site at a minimum should contain:
-   an overview the project, DONE
-   appropriate design diagrams, 
-   code snippets, 
-   other desired supporting artifacts, 
-   and details of the background of the project, 
-   approach to implementation, 
-   and how the user needs to do to run/access the project. DONE 
-This portfolio should fully summarize and demonstrate the work completed during the Senior Project in CST-451 and CST-452
-<-->
-
-
 # __LAST DATE__
 
 [![](https://img.youtube.com/vi/4AC5_KpQ0t0/maxresdefault.jpg)](https://youtu.be/4AC5_KpQ0t0)
@@ -33,8 +18,6 @@ One of the key elements of keeping the player feeling cornered is the imposed ti
 
 ![A screenshot showing the battle system layout. There are four player characters on the left, and enemies on the right. To the right side of the screen are four portraits of the player characters with their health and energy. At the bottom is the dialog box with the options for the player turn.](/GithubImages/combatScreen.png)
 
-
-
 Combat in games can be clunky or intrusive to the flow of things, but in this case, they are to subvert the standard horror formula of the monster instantly killing you if it finds you. The player is given a chance to struggle away or hold their ground but at the cost of their wellbeing. Getting caught is not final but it is in no way rewarding by design. Damage is relatively permanent and means to heal oneself are far and few between. Overall, it is intended to best be avoided.
 
 ### __Exploration__
@@ -43,8 +26,7 @@ Among every overworld gimmick, exploring takes time. Moving from one section of 
 
 ## __Background__
 
-<!-->Snippet talking about inspirations and how the idea came to be<-->
-
+The original concept of a dating simulator that subverts itself was inspired by [Doki Doki Literature Club](https://store.steampowered.com/app/698780/Doki_Doki_Literature_Club/), one of the first visual novels to do so. Whule its elements are more psychological in nature I wanted to bring something more tangible to the table. Breaking free of the visual novel formula I want a gameplay experience more directed around palyer action than just choices.
 
 ## __Implementation__
 
@@ -54,26 +36,26 @@ Among every overworld gimmick, exploring takes time. Moving from one section of 
 
 The dialog system for Last Date will be handling Yarn Spinner, a scripting language and library built by Secret Lab for making story-driven games. Yarn Spinner allows all dialog to be written in easy to export scripts that can include commands tied to functions to handle game logic during dialog. It handles the mapping of character names to lines, and animation and logic cues within the scripts themselves. This means that the core of the dialogue systems is already built, leaving only customization and polish for the purposes of Last Date. The most basic of which are the different animation functions in the YarnUtility script for controlling characters during scenes. 
 
-### __Yarn__
+### __Movement__
 
-![An example of a yarn script](/GithubImages/yarnScript.png)
-
-
+The player has several forms of movement ranging from slow walking, to crouching, to sprinting.
 
 ### __Battle System__
-<!-->Show Battle System Design<-->
 
-### __Movement System__
-<!-->Movement System?<-->
+The battle system features a dynamic UI setup that populates at scene creation based on the encounter passed to it by the previous scene. The overall flow is a standard turn-based system where all characters act, one at a time.
 
 ### __Enemy AI__
 
 ![A flowchart describing the enemy AI Loop](/GithubImages/enemyLogic.png)
 
-### __Database__
-<!-->Diagrams for SQLite DB<-->
-All of the game's triggers and flags are handled in a single shared database.
+The overworld enemy AI is relatively simple, but designed totake advantage of the player's many movement options and general explorability of the map.
 
+### __Database__
+
+All of the game's triggers and flags are handled in a single shared database. This database is connected to by a Global Storage object that is created at runtime and persists at all times. It pulls in necessary data and updates the backups on it as necessary when the player wishes to save, or the game autosaves.
+
+> [!NOTE]
+> While saving is not actually an option in the demo, the capability to do so is programmed and tested, just not implemented.
 
 ## __Project Goals__
 
@@ -91,6 +73,8 @@ Unity was the engine of choice for this game project. We used __2022.1.7f1__ sin
 ### __Yarnspinner__
 
 Yarnspinner is a dialog engine built by _Yarn Spinner ltd._ originally for _Secret Lab's "Night in the Woods"_. As it is opensource for use, it made for a great way to implement dialog without worrying about the overall control of it. 
+
+![An example of a yarn script](/GithubImages/yarnScript.png)
 
 > [!TIP]
 > You can find more info as well as their details [here](https://www.yarnspinner.dev).
