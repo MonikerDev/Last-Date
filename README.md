@@ -31,7 +31,7 @@ One of the key elements of keeping the player feeling cornered is the imposed ti
 
 ### __Combat__
 
-![A screenshot showing the battle system layout. There are four player characters on the left, and enemies on the right. To the right side of the screen are four portraits of the player characters with their health and energy. At the bottom is the dialog box with the options for the player turn.](https://imgur.com/a/d2i1TwG)
+![A screenshot showing the battle system layout. There are four player characters on the left, and enemies on the right. To the right side of the screen are four portraits of the player characters with their health and energy. At the bottom is the dialog box with the options for the player turn.](https://imgur.com/PuGk3J8)
 
 
 
